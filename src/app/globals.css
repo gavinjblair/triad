@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --msp-ink: #101826;
+  --msp-muted: #596375;
+  --msp-subtle: #7b8699;
+
+  --msp-surface: #ffffff;
+  --msp-surface-page: #f4f5f7;
+  --msp-surface-alt: #eff2f6;
+  --msp-surface-muted: #e7ebf0;
+
+  --msp-border: #e1e6ec;
+  --msp-border-strong: #ced7e1;
+
+  --msp-red: #f01733;
+  --msp-red-strong: #d70d27;
+
+  --msp-blue: #1a67ca;
+  --msp-blue-strong: #0f57b8;
+  --msp-blue-soft: #eaf3ff;
+
+  --msp-footer: #05080e;
+  --msp-footer-soft: #0a0e16;
+
+  --msp-hero-from: #d0ecf7;
+  --msp-hero-to: #b8d1ee;
+  --msp-hero-from-2: #d9f0fa;
+  --msp-hero-to-2: #c6dcf2;
+
+  --msp-shadow-card: 0 1px 0 rgba(16, 24, 39, 0.04), 0 10px 24px rgba(16, 24, 39, 0.05);
+  --msp-shadow-soft: 0 4px 20px rgba(16, 24, 39, 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-msp-ink: var(--msp-ink);
+  --color-msp-muted: var(--msp-muted);
+  --color-msp-subtle: var(--msp-subtle);
+
+  --color-msp-surface: var(--msp-surface);
+  --color-msp-surface-page: var(--msp-surface-page);
+  --color-msp-surface-alt: var(--msp-surface-alt);
+  --color-msp-surface-muted: var(--msp-surface-muted);
+
+  --color-msp-border: var(--msp-border);
+  --color-msp-border-strong: var(--msp-border-strong);
+
+  --color-msp-red: var(--msp-red);
+  --color-msp-red-strong: var(--msp-red-strong);
+
+  --color-msp-blue: var(--msp-blue);
+  --color-msp-blue-strong: var(--msp-blue-strong);
+  --color-msp-blue-soft: var(--msp-blue-soft);
+
+  --radius-msp-card: 0.75rem;
+  --radius-msp-pill: 999px;
+
+  --shadow-msp-card: var(--msp-shadow-card);
+  --shadow-msp-soft: var(--msp-shadow-soft);
+
+  --font-sans: var(--font-lato);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--msp-surface-page);
+    color: var(--msp-ink);
+    font-family: var(--font-lato), ui-sans-serif, system-ui, -apple-system,
+      Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .msp-container {
+    @apply mx-auto w-full max-w-[1420px] px-6;
+  }
+
+  .msp-content {
+    @apply mx-auto w-full max-w-[1180px] px-4 sm:px-6;
+  }
+
+  .msp-section {
+    @apply py-20 md:py-24;
+  }
+
+  .msp-card {
+    @apply rounded-[12px] border border-msp-border bg-white p-6 shadow-msp-card;
+  }
+
+  .msp-card-tight {
+    @apply rounded-md border border-msp-border bg-white p-6;
+  }
+
+  .msp-btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md px-5 py-3 text-sm font-bold tracking-[0.01em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msp-blue/30;
+  }
+
+  .msp-btn-primary {
+    @apply bg-msp-red text-white shadow-sm hover:bg-msp-red-strong;
+  }
+
+  .msp-btn-secondary {
+    @apply border border-msp-border-strong bg-white text-msp-ink hover:bg-msp-surface-alt;
+  }
+
+  .msp-btn-ghost {
+    @apply bg-transparent px-3 py-2 font-semibold text-msp-ink hover:bg-msp-surface-alt;
+  }
+
+  .msp-hero {
+    background: linear-gradient(90deg, var(--msp-hero-from) 0%, var(--msp-hero-to) 100%);
+  }
+
+  .msp-hero-soft {
+    background: linear-gradient(90deg, var(--msp-hero-from-2) 0%, var(--msp-hero-to-2) 100%);
+  }
+
+  .msp-footer-bg {
+    background: linear-gradient(180deg, var(--msp-footer) 0%, var(--msp-footer-soft) 100%);
+  }
+
+  .msp-link-divider {
+    @apply relative pr-4;
+  }
+
+  .msp-link-divider:not(:last-child)::after {
+    content: "";
+    @apply absolute right-0 top-1/2 h-3.5 w-px -translate-y-1/2 bg-white/18;
+  }
+
+  .msp-contour-bg {
+    background-image: radial-gradient(circle at 20% 20%, rgba(26, 103, 202, 0.08) 0, transparent 42%),
+      radial-gradient(circle at 80% 30%, rgba(15, 87, 184, 0.08) 0, transparent 40%),
+      radial-gradient(circle at 55% 70%, rgba(26, 103, 202, 0.07) 0, transparent 43%);
+  }
+
+  .msp-hero-rings {
+    background-image:
+      radial-gradient(1200px 460px at 50% -160px, rgba(15, 87, 184, 0.07) 50%, transparent 51%),
+      radial-gradient(900px 340px at 50% -110px, rgba(15, 87, 184, 0.05) 50%, transparent 51%);
+  }
+
+  .msp-input {
+    @apply h-[54px] rounded-md border border-msp-border bg-white px-4 text-[13px] font-normal text-msp-ink outline-none transition-colors placeholder:text-msp-subtle focus:border-msp-blue;
+  }
+
+  .msp-checkbox,
+  .msp-radio {
+    @apply h-[18px] w-[18px] border border-msp-border-strong;
+  }
 }
