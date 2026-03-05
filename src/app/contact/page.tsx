@@ -156,6 +156,7 @@ export default function ContactPage() {
               <p className="mt-2 text-msp-blue">{direct.email}</p>
               <p className="mt-1 text-msp-blue">{direct.phone}</p>
               <p className="mt-2 text-[13px] text-msp-muted">{direct.region}</p>
+              <p className="mt-3 text-[12px] leading-relaxed text-msp-muted">{direct.reassurance}</p>
             </div>
           </div>
         </Container>

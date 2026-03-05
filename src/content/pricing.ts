@@ -9,8 +9,8 @@ export const pricingContent = {
       "Defined scope tied to service depth and standards.",
       "Service level reflects operational maturity.",
     ],
-    primaryCta: { label: "Request pricing review", href: "/contact" },
-    secondaryCta: { label: "Book a Structured IT Review", href: "/contact" },
+    primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
+    secondaryCta: { label: "View Solutions", href: "/solutions" },
   },
   philosophy: {
     eyebrow: "PRICING PHILOSOPHY",
@@ -24,8 +24,11 @@ export const pricingContent = {
     principleLines: ["No seat pricing for tickets.", "No incentives for uncontrolled environments."],
   },
   tiers: {
+    guidanceLine:
+      "Most organisations start with Business and expand based on security and governance requirements.",
     title: "Choose the depth of operational control",
     subtitle: "All service levels run through a defined operating model.",
+    reassuranceLine: "No long-term lock-ins. Clear scope. Structured delivery.",
     cards: [
       {
         name: "Essential",
@@ -41,6 +44,7 @@ export const pricingContent = {
       },
       {
         name: "Business",
+        highlightLabel: "Most organisations choose this",
         price: "GBP 119",
         note: "per managed user / month",
         fit: "For organisations requiring deeper security and governance controls.",

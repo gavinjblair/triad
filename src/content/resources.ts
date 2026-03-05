@@ -16,8 +16,8 @@ export const resourcesContent = {
       "Structured comparisons focused on scope, risk, and accountability.",
       "Actionable guidance written for owners and leadership teams.",
     ],
-    primaryCta: { label: "Read Strategic Guide", href: "#strategic-guides" },
-    secondaryCta: { label: "Get a Free IT Cost Comparison", href: "/contact" },
+    primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
+    secondaryCta: { label: "View Solutions", href: "/solutions" },
   },
   categories: ["Strategic Guides", "Operational Guides", "Security Guides"],
   sections: [
@@ -97,7 +97,7 @@ export const resourcesContent = {
   closingCta: {
     title: "Need clarity on your current IT position?",
     buttonLabel: "Book a Structured IT Review",
-    secondaryLabel: "Get a Free IT Cost Comparison",
+    secondaryLabel: "View Pricing",
     buttonHref: "/contact",
     secondaryHref: "/pricing",
   },

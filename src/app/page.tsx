@@ -86,6 +86,17 @@ export default function HomePage() {
                   {hero.secondaryCta.label}
                 </Button>
               </div>
+              <div className="mt-4 grid gap-2 md:grid-cols-3">
+                {hero.proofStrip.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[10px] border border-gray-100 bg-white/80 px-3 py-2 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
+                  >
+                    <p className="text-[12px] font-semibold text-msp-ink">{item.title}</p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-msp-muted">{item.body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
             <HeroDashboard />
           </div>

@@ -3,8 +3,22 @@ export const homeContent = {
     eyebrow: "OVERVIEW",
     title: "Structured IT leadership for stable, secure operations.",
     description:
-      "Proactive IT delivered through controlled, service-led managed IT designed to keep environments secure, stable, and predictable.",
+      "Proactive IT leadership through structured service management designed to keep environments secure, stable, and predictable.",
     credibilityStrip: "Trusted by organisations across Edinburgh, Glasgow and Central Scotland.",
+    proofStrip: [
+      {
+        title: "Senior-led delivery",
+        body: "Work directly with the lead consultant.",
+      },
+      {
+        title: "Defined scope & standards",
+        body: "Clear boundaries, documented delivery.",
+      },
+      {
+        title: "1 business-day response",
+        body: "Every enquiry answered within one business day.",
+      },
+    ],
     bullets: [
       "No reactive support model by default.",
       "Defined systems owned by senior oversight.",

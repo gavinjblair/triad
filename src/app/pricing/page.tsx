@@ -72,6 +72,7 @@ export default function PricingPage() {
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
           <div className="text-center">
+            <p className="text-[12px] leading-relaxed text-msp-muted">{tiers.guidanceLine}</p>
             <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{tiers.title}</h2>
             <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{tiers.subtitle}</p>
           </div>
@@ -84,6 +85,11 @@ export default function PricingPage() {
                   ("featured" in card && card.featured) && "ring-2 ring-msp-blue/40",
                 )}
               >
+                {"highlightLabel" in card && card.highlightLabel ? (
+                  <p className="mb-3 inline-flex rounded-full border border-[#d8e4f3] bg-[#edf4ff] px-3 py-1 text-[11px] font-semibold text-msp-blue">
+                    {card.highlightLabel}
+                  </p>
+                ) : null}
                 <h3 className="text-[28px] font-bold tracking-[-0.02em] text-msp-ink">{card.name}</h3>
                 <p className="mt-3 text-[35px] font-bold tracking-[-0.02em] text-msp-ink">{card.price}</p>
                 <p className="text-[12px] text-msp-muted">{card.note}</p>
@@ -102,6 +108,7 @@ export default function PricingPage() {
               </article>
             ))}
           </div>
+          <p className="mt-5 text-center text-[12px] leading-relaxed text-msp-muted">{tiers.reassuranceLine}</p>
         </Container>
       </section>
 

@@ -9,8 +9,8 @@ export const contactContent = {
       "Senior-level review of risk, scope, and priorities.",
       "Clear findings with practical recommendations and next actions.",
     ],
-    primaryCta: { label: "Book a Structured IT Review", href: "#assessment-form" },
-    secondaryCta: { label: "Get a Free IT Cost Comparison", href: "/pricing" },
+    primaryCta: { label: "Book a Structured IT Review", href: "/contact#assessment-form" },
+    secondaryCta: { label: "View Pricing", href: "/pricing" },
   },
   process: {
     title: "What happens next?",
@@ -68,7 +68,8 @@ export const contactContent = {
     name: "TRIAD IT",
     email: "info@triad-it.co.uk",
     phone: "0131 555 0123",
-    region: "Edinburgh - Glasgow - Stirling and surrounding areas",
+    region: "Supporting organisations across Edinburgh, Glasgow and Central Scotland.",
+    reassurance: "We respond to all enquiries within one business day.",
   },
   closingCta: {
     title: "Prefer to explore first?",

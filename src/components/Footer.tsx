@@ -21,7 +21,7 @@ const footerPrimaryLinks = [
 
 function ActionStrip() {
   const actions = [
-    { label: "Structured IT Review", icon: <PlayCircleIcon className="h-4 w-4" />, href: "/contact" },
+    { label: "Book a Structured IT Review", icon: <PlayCircleIcon className="h-4 w-4" />, href: "/contact" },
     { label: "View Pricing", icon: <PoundIcon className="h-4 w-4" />, href: "/pricing" },
     { label: "Contact", icon: <MailIcon className="h-4 w-4" />, href: "/contact" },
   ] as const;
@@ -81,6 +81,10 @@ export function Footer({ className }: Props) {
       {!hideActionStrip ? <ActionStrip /> : null}
 
       <Container size="shell" className="py-14 text-center">
+        <p className="mx-auto max-w-[940px] text-[12px] leading-relaxed text-white/62">
+          Structured delivery. Defined standards. Clear accountability.
+        </p>
+
         <div className="mx-auto flex max-w-[1020px] flex-wrap items-center justify-center gap-y-3 text-[15px] text-white/82">
           {footerPrimaryLinks.map((item, index) => (
             <Link
@@ -104,7 +108,7 @@ export function Footer({ className }: Props) {
             aria-label="Region"
           >
             <GlobeIcon className="h-4 w-4" />
-            Edinburgh - Glasgow - Stirling
+            Supporting organisations across Edinburgh, Glasgow and Central Scotland.
           </Link>
         </div>
 
