@@ -17,7 +17,7 @@ export default function SupportPage() {
     <>
       <PageHero title={title} tone="flat" size="md" />
 
-      <section className="bg-[#f4f5f7] py-10 pb-12">
+      <section className="bg-[#f4f5f7] py-20">
         <Container size="content">
           <div className="grid gap-5 md:grid-cols-3">
             <InfoTile

@@ -8,8 +8,9 @@ export default function GetQuotePage() {
   const { title, quote, form } = getQuoteContent;
 
   return (
-    <section className="msp-hero py-14 md:py-16">
+    <section className="msp-hero py-24 md:py-28">
       <Container size="content">
+        <h1 className="sr-only">Get Quote</h1>
         <div className="grid gap-10 lg:grid-cols-[1fr_660px]">
           <div className="relative px-2 pt-5">
             <div className="text-[120px] leading-none text-white/85">&ldquo;</div>
@@ -19,7 +20,7 @@ export default function GetQuotePage() {
               that they will be there when needed.
             </p>
             <div className="mt-7 flex items-center gap-4">
-              <div className="h-[66px] w-[66px] overflow-hidden rounded-full border border-[#9fb9d8] bg-[#d8e5f3]">
+              <div className="h-[66px] w-[66px] overflow-hidden rounded-full border border-gray-100 bg-[#d8e5f3]">
                 <div className="flex h-full items-center justify-center text-[#1b4f87]">
                   <UserAvatarIcon className="h-8 w-8" />
                 </div>
@@ -31,8 +32,8 @@ export default function GetQuotePage() {
             </div>
           </div>
 
-          <div className="rounded-[16px] border border-[#d7dbe2] bg-[#eef2f6] p-7 pt-8 shadow-msp-card">
-            <div className="mx-auto -mt-[54px] w-fit rounded-full border border-[#d5d9df] bg-[#f7f7f8] px-8 py-2.5 text-[14px] text-msp-ink">
+          <div className="rounded-[16px] border border-gray-100 bg-[#eef2f6] p-7 pt-8 shadow-msp-card">
+            <div className="mx-auto -mt-[54px] w-fit rounded-full border border-gray-100 bg-[#f7f7f8] px-8 py-2.5 text-[14px] text-msp-ink">
               {title}
             </div>
 
@@ -130,7 +131,7 @@ export default function GetQuotePage() {
               </p>
 
               <div className="pt-1 text-center">
-                <Button type="submit" className="h-[38px] min-w-[220px] rounded-[6px] text-[15px]">
+                <Button type="submit" className="min-w-[220px]">
                   {form.cta}
                 </Button>
               </div>

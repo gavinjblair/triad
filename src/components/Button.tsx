@@ -12,8 +12,8 @@ const variantClass: Record<Variant, string> = {
 };
 
 const sizeClass: Record<Size, string> = {
-  md: "h-[50px] px-8 text-[17px]",
-  sm: "h-[48px] px-6 text-[14px]",
+  md: "text-sm",
+  sm: "text-sm",
 };
 
 type BaseProps = {

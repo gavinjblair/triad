@@ -3,31 +3,27 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/Container";
-import { CartIcon, DollarIcon, GlobeIcon, PlayCircleIcon } from "@/components/icons";
+import { GlobeIcon, MailIcon, PlayCircleIcon, PoundIcon } from "@/components/icons";
 import { cn } from "@/lib/cn";
 
 type Props = {
   className?: string;
 };
 
-const footerTopLinks = [
-  "About us",
-  "EULA",
-  "Terms of service",
-  "Security",
-  "Compliance",
-  "Privacy policy",
-  "Cookie policy",
-  "Affiliate program",
+const footerPrimaryLinks = [
+  { label: "Overview", href: "/" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resources", href: "/resources" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
-
-const footerBottomLinks = ["Newsletter", "Contact sales", "Our offices"] as const;
 
 function ActionStrip() {
   const actions = [
-    { label: "Request Demo", icon: <PlayCircleIcon className="h-4 w-4" />, href: "/demo" },
-    { label: "Get Quote", icon: <DollarIcon className="h-4 w-4" />, href: "/get-quote" },
-    { label: "Buy Now", icon: <CartIcon className="h-4 w-4" />, href: "/store" },
+    { label: "Structured IT Review", icon: <PlayCircleIcon className="h-4 w-4" />, href: "/contact" },
+    { label: "View Pricing", icon: <PoundIcon className="h-4 w-4" />, href: "/pricing" },
+    { label: "Contact", icon: <MailIcon className="h-4 w-4" />, href: "/contact" },
   ] as const;
 
   return (
@@ -37,10 +33,10 @@ function ActionStrip() {
         className="flex h-[84px] flex-wrap items-center justify-center gap-8 text-center md:justify-between"
       >
         <Link
-          href="/free-trial"
-          className="inline-flex h-[48px] min-w-[160px] items-center justify-center rounded-[6px] bg-msp-red px-6 text-[17px] font-bold text-white transition-colors hover:bg-msp-red-strong"
+          href="/contact"
+          className="inline-flex min-w-[240px] items-center justify-center rounded-md bg-msp-red px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-msp-red-strong"
         >
-          Free Trial
+          Book a Structured IT Review
         </Link>
         <div className="flex items-center gap-12 text-white/90">
           {actions.map((item) => (
@@ -75,88 +71,49 @@ function CookieBubble() {
   );
 }
 
-function DemoWidget() {
-  return (
-    <div className="fixed bottom-4 right-4 z-30 w-[260px] rounded-t-md border border-white/20 bg-[#1d1f24] text-white shadow-msp-soft">
-      <div className="flex justify-end pr-2 pt-1 text-xs text-white/70">-</div>
-      <div className="px-4 pb-4">
-        <div className="text-[12px] font-bold">Do you want a Personalized Demo?</div>
-        <div className="mt-3 grid gap-2">
-          {["Yes", "No"].map((item) => (
-            <button
-              type="button"
-              key={item}
-              className="flex h-8 items-center gap-2 rounded-full bg-white/10 px-3 text-left text-[12px] font-semibold hover:bg-white/15"
-            >
-              <span className="inline-block h-3 w-3 rounded-full border border-white/55 bg-white" />
-              {item}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function Footer({ className }: Props) {
   const pathname = usePathname();
   const hideActionStrip = pathname === "/get-quote";
-  const hideFloaters = pathname === "/get-quote";
+  const hideCookieBubble = pathname === "/get-quote";
 
   return (
     <footer className={cn("msp-footer-bg relative text-white", className)}>
       {!hideActionStrip ? <ActionStrip /> : null}
 
-      <Container size="shell" className="py-9 text-center">
+      <Container size="shell" className="py-14 text-center">
         <div className="mx-auto flex max-w-[1020px] flex-wrap items-center justify-center gap-y-3 text-[15px] text-white/82">
-          {footerTopLinks.map((label, index) => (
+          {footerPrimaryLinks.map((item, index) => (
             <Link
-              key={label}
-              href="#"
+              key={item.label}
+              href={item.href}
               className={cn(
                 "px-3 transition-colors hover:text-white",
-                index !== footerTopLinks.length - 1 && "msp-link-divider",
+                index !== footerPrimaryLinks.length - 1 && "msp-link-divider",
               )}
-              aria-label={label}
+              aria-label={item.label}
             >
-              {label}
+              {item.label}
             </Link>
           ))}
         </div>
 
         <div className="mx-auto mt-3 flex max-w-[1020px] flex-wrap items-center justify-center gap-y-3 text-[15px] text-white/82">
-          {footerBottomLinks.map((label) => (
-            <Link
-              key={label}
-              href="#"
-              className="msp-link-divider px-3 transition-colors hover:text-white"
-              aria-label={label}
-            >
-              {label}
-            </Link>
-          ))}
           <Link
-            href="#"
+            href="/contact"
             className="inline-flex items-center gap-1 px-3 text-[#1c7bed] transition-colors hover:text-[#58a0fb]"
-            aria-label="Global (English)"
+            aria-label="Region"
           >
             <GlobeIcon className="h-4 w-4" />
-            Global (English)
-            <span className="text-[11px]">v</span>
+            Edinburgh - Glasgow - Stirling
           </Link>
         </div>
 
         <div className="mt-7 text-[15px] text-white/68">
-          (c) 2026 Zoho Corporation Pvt. Ltd. All rights reserved.
+          (c) 2026 TRIAD IT. All rights reserved.
         </div>
       </Container>
 
-      {!hideFloaters ? (
-        <>
-          <CookieBubble />
-          <DemoWidget />
-        </>
-      ) : null}
+      {!hideCookieBubble ? <CookieBubble /> : null}
     </footer>
   );
 }

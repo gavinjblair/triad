@@ -10,7 +10,7 @@ export function StatCard({ value, label, className }: Props) {
   return (
     <div
       className={cn(
-        "rounded-[12px] border border-[#8db8f4] bg-[#f5f9ff] px-5 py-4",
+        "rounded-[12px] border border-gray-100 bg-[#f5f9ff] px-5 py-4 shadow-msp-card",
         className,
       )}
     >
@@ -19,7 +19,7 @@ export function StatCard({ value, label, className }: Props) {
           <div className="text-[32px] font-bold tracking-[-0.01em] text-msp-ink">{value}</div>
           <div className="mt-1 text-[14px] text-msp-muted">{label}</div>
         </div>
-        <div className="h-12 w-12 rounded-md border border-[#99bced] bg-white" />
+        <div className="h-12 w-12 rounded-md border border-gray-100 bg-white" />
       </div>
     </div>
   );

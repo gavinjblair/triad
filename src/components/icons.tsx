@@ -147,6 +147,20 @@ export function DollarIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function PoundIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M15.8 6.8c-1-.9-2.2-1.3-3.7-1.3-2.6 0-4.3 1.7-4.3 4.2 0 1 .3 2 .9 2.9H6.5m6.8 0H6.5m1.7 0c.7 1.1 1 2.1 1 3.1 0 .9-.2 1.8-.7 2.7h8.8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function CartIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>

@@ -22,17 +22,17 @@ export function PageHero({
         tone === "hero" && "msp-hero",
         tone === "heroSoft" && "msp-hero-soft",
         tone === "flat" && "border-y border-msp-border bg-[#dbdde1]",
-        tone === "flat" ? "py-3" : "py-16 md:py-[72px]",
+        tone === "flat" ? "py-3" : "py-24 md:py-28",
         className,
       )}
     >
       <Container size="content" className="text-center">
         <h1
           className={cn(
-            "font-bold tracking-[-0.02em] text-msp-ink",
+            "text-5xl font-semibold leading-tight tracking-[-0.02em] text-msp-ink",
             tone === "flat" && "text-[38px]",
-            tone !== "flat" && size === "lg" && "text-[50px] md:text-[58px]",
-            tone !== "flat" && size === "md" && "text-[48px] md:text-[54px]",
+            tone !== "flat" && size === "lg" && "text-5xl",
+            tone !== "flat" && size === "md" && "text-5xl",
           )}
         >
           {title}

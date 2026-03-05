@@ -28,7 +28,7 @@ export function Tabs({
     <div
       className={cn(
         "rounded-[8px] border border-msp-border bg-white",
-        variant === "pill" && "mx-auto w-fit shadow-sm",
+        variant === "pill" && "mx-auto w-fit rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.08)]",
         className,
       )}
     >
@@ -36,7 +36,7 @@ export function Tabs({
         className={cn(
           "flex overflow-auto",
           variant === "underline" && "justify-start px-2",
-          variant === "pill" && "justify-center gap-1 p-1",
+          variant === "pill" && "justify-center gap-2 p-1",
         )}
       >
         {items.map((item) => {
@@ -54,10 +54,10 @@ export function Tabs({
                   active &&
                   "border-msp-blue text-msp-ink",
                 variant === "pill" &&
-                  "rounded-md px-4 py-2.5 text-[12px] font-semibold text-msp-muted hover:bg-msp-surface-alt hover:text-msp-ink",
+                  "rounded-full border border-transparent px-4 py-2 text-sm font-medium text-msp-muted hover:border-msp-border hover:bg-msp-surface-alt hover:text-msp-ink",
                 variant === "pill" &&
                   active &&
-                  "bg-[#4e8cf2] text-white hover:bg-[#4e8cf2] hover:text-white",
+                  "border-msp-blue bg-msp-blue text-white hover:bg-msp-blue hover:text-white",
               )}
             >
               {item.label}

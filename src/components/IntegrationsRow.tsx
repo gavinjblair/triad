@@ -21,26 +21,26 @@ export function IntegrationsRow({
         {title}
       </h2>
       {subtitle ? (
-        <p className="mx-auto mt-5 max-w-[880px] text-[18px] leading-8 text-msp-muted">
+        <p className="mx-auto mt-5 max-w-[880px] text-[18px] leading-relaxed text-msp-muted">
           {subtitle}
         </p>
       ) : null}
-      <div className="mt-10 grid gap-4">
-        <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="mt-10 grid gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           {topRow.map((name) => (
             <div
               key={name}
-              className="flex h-[54px] min-w-[150px] items-center justify-center rounded-[7px] border border-msp-border bg-white px-6 text-[15px] font-semibold text-msp-ink/85"
+              className="flex items-center justify-center rounded-[7px] border border-msp-border bg-white px-4 py-2 text-xs font-semibold text-msp-ink/85"
             >
               {name}
             </div>
           ))}
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2">
           {bottomRow.map((name) => (
             <div
               key={name}
-              className="flex h-[54px] min-w-[150px] items-center justify-center rounded-[7px] border border-msp-border bg-white px-6 text-[15px] font-semibold text-msp-ink/85"
+              className="flex items-center justify-center rounded-[7px] border border-msp-border bg-white px-4 py-2 text-xs font-semibold text-msp-ink/85"
             >
               {name}
             </div>

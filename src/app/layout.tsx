@@ -12,8 +12,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "MSP Central UI Rebuild",
-  description: "Pixel-accurate MSP Central marketing UI recreation in Next.js + Tailwind",
+  title: "TRIAD IT",
+  description: "Structured, security-first IT management delivered with accountability.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,8 @@ export default function RootLayout({
         <Header
           topLinks={topLinks}
           mainLinks={mainLinks}
-          ctaHref="/free-trial"
-          ctaLabel="Free Trial"
+          ctaHref="/contact"
+          ctaLabel="Book a Structured IT Review"
         />
         <main>{children}</main>
         <Footer />

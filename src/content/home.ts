@@ -1,116 +1,179 @@
 export const homeContent = {
   hero: {
-    title: {
-      lead: "A ",
-      highlight: "Single Platform",
-      tail: " for ITSM, RMM, and Cybersecurity",
-    },
-    subtitle: "All your MSP tools, in one place.",
-    cta: { label: "START A FREE TRIAL", href: "/free-trial" },
+    eyebrow: "OVERVIEW",
+    title: "Structured IT leadership for stable, secure operations.",
+    description:
+      "Proactive IT delivered through controlled, service-led managed IT designed to keep environments secure, stable, and predictable.",
+    credibilityStrip: "Trusted by organisations across Edinburgh, Glasgow and Central Scotland.",
+    bullets: [
+      "No reactive support model by default.",
+      "Defined systems owned by senior oversight.",
+      "Structured accountability and clear reporting.",
+      "Scope and responsibilities documented in writing.",
+    ],
+    primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
+    secondaryCta: { label: "View Solutions", href: "/solutions" },
   },
   brands: {
-    title: "Brands that trust us",
-    items: ["BLAZE", "Copaque", "intwo", "NETRICH", "ivision"],
+    title: "Brands that trust structured delivery",
+    subtitle: "Trusted by organisations that value controlled and reliable IT.",
+    items: ["Copaque", "intwo", "NETRICH", "Gocloud", "Firstline", "Triad"],
   },
-  integrated: {
-    title: "Integrated Platform for Managed Services",
-    body:
-      "MSP Central brings remote monitoring and management, service delivery, security, and deep automation into one unified stack, engineered for fast-moving MSP teams. Consolidate the entire service desk and endpoint lifecycle into one platform.",
-    stats: [
-      { value: "16,000+", label: "MSPs and teams empowered" },
-      { value: "15+", label: "Countries across the world" },
-      { value: "2M+", label: "Cloud devices managed" },
-      { value: "7,100+", label: "MSPs powered" },
+  problem: {
+    title: "When IT lacks structure, leadership absorbs the risk.",
+    subtitle: "Three recurring pressure points we resolve through defined delivery.",
+    items: [
+      {
+        title: "Operational Drift",
+        body: "Standards vary by engineer, documentation decays, and accountability becomes unclear across day-to-day support.",
+      },
+      {
+        title: "Hidden Risk",
+        body: "Security gaps, legacy setup, and weak ownership remain unseen until incidents force urgent action.",
+      },
+      {
+        title: "Reactive Delivery",
+        body: "Support becomes incident-driven, with priorities changing constantly and no defined model for improvement.",
+      },
     ],
   },
-  operations: {
-    title: "One place where MSP operations come together",
+  operatingModel: {
+    title: "Operating model: Stabilise -> Secure -> Improve",
+    description:
+      "A practical operating model used across managed environments to create consistency, reduce noise, and support measurable progress.",
     tabs: [
-      { value: "rmm", label: "RMM" },
-      { value: "itsm", label: "ITSM" },
-      { value: "server", label: "Server management" },
-      { value: "security", label: "Endpoint security" },
-      { value: "reports", label: "Reports and analytics" },
+      { value: "infrastructure", label: "Infrastructure" },
+      { value: "security", label: "Security" },
+      { value: "documentation", label: "Documentation" },
+      { value: "monitoring", label: "Monitoring" },
+      { value: "governance", label: "Governance" },
     ],
     blocks: [
       {
-        id: "rmm",
-        title:
-          "Monitor, patch, and troubleshoot devices remotely with a robust RMM engine that scales across clients and geographies.",
+        id: "infrastructure",
+        title: "One operating model across every client.",
         description:
-          "Automate routine tasks, enforce policy controls, and handle alerts from one command center.",
-        cta: "EXPLORE RMM",
+          "Infrastructure standards are applied consistently so environments remain stable, predictable, and supportable.",
+        bullets: [
+          "Documented baseline and expected state.",
+          "Version and lifecycle management discipline.",
+          "Operational consistency across estates.",
+        ],
         tone: "blue",
-        align: "left",
-      },
-      {
-        id: "itsm",
-        title:
-          "Manage tickets, contracts, billing, and SLAs from a single ITSM console that aligns your service desk and business operations.",
-        description:
-          "Empower technicians with contextual views and streamline workflows to boost productivity.",
-        cta: "EXPLORE ITSM",
-        tone: "slate",
-        align: "right",
-      },
-      {
-        id: "server",
-        title:
-          "Track uptime, network performance, server loads, and service availability with 80+ KPIs, alongside IT automation to enable self-healing of servers.",
-        description:
-          "Get alerts before incidents escalate and resolve faster with automation-first workflows.",
-        cta: "EXPLORE SERVER MONITORING",
-        tone: "green",
-        align: "left",
       },
       {
         id: "security",
-        title:
-          "Protect every device with layered endpoint security, integrating an antivirus tool, vulnerability scans, browser security capabilities, and application controls.",
+        title: "Baselines applied by default.",
         description:
-          "Use centralized lock-down rules and hardening policies to keep environments resilient.",
-        cta: "EXPLORE ENDPOINT SECURITY",
-        tone: "amber",
-        align: "right",
+          "Security controls are applied from onboarding and maintained through review, ownership, and practical enforcement.",
+        bullets: [
+          "Identity and access hardening.",
+          "Policy enforcement at service level.",
+          "Security reporting with clear ownership.",
+        ],
+        tone: "green",
       },
       {
-        id: "reports",
-        title:
-          "Visualize service performance, technician KPIs, asset usage, and client health with customizable reports and dashboards.",
+        id: "documentation",
+        title: "Backup oversight and recovery readiness.",
         description:
-          "Turn raw data into actionable insights your team and clients can understand instantly.",
-        cta: "EXPLORE REPORTS & ANALYTICS",
+          "Recovery planning is continuously reviewed with practical validation and documented accountability.",
+        bullets: [
+          "Defined recovery model.",
+          "Restore testing cadence.",
+          "Continuity review in service cycle.",
+        ],
+        tone: "amber",
+      },
+      {
+        id: "monitoring",
+        title: "Reviews that drive improvement.",
+        description:
+          "Structured reviews turn operational insight into prioritised actions, measured outcomes, and accountable progress.",
+        bullets: [
+          "Scope and standards review.",
+          "Risk priority tracking.",
+          "Monthly service improvement plan.",
+        ],
+        tone: "slate",
+      },
+      {
+        id: "governance",
+        title: "Defined leadership rhythm.",
+        description:
+          "Governance creates calm operations through regular checkpoints, ownership clarity, and practical decision support.",
+        bullets: [
+          "Senior-level oversight cadence.",
+          "Defined escalation and communication path.",
+          "Transparent reporting for leadership.",
+        ],
         tone: "purple",
-        align: "left",
+      },
+    ],
+    bullets: [
+      "Infrastructure standards and lifecycle control.",
+      "Security baseline with identity, device, and access hardening.",
+      "Documentation discipline and ownership visibility.",
+      "Monitoring and patching with defined review cadence.",
+      "Governance through structured monthly oversight.",
+    ],
+  },
+  coreServices: {
+    title: "Core services with defined scope",
+    subtitle: "Structured services delivered through a single operating model.",
+    cards: [
+      {
+        title: "Managed IT Services",
+        body: "Controlled support, patching, monitoring, and standards management for day-to-day stability.",
+      },
+      {
+        title: "Cybersecurity",
+        body: "Security-first configuration, identity controls, response readiness, and practical risk reduction.",
+      },
+      {
+        title: "Microsoft 365 Management",
+        body: "Tenant governance, security baselines, policy control, and documented administration.",
+      },
+      {
+        title: "Backup & Disaster Recovery",
+        body: "Backup design, recovery validation, and continuity planning for controlled resilience.",
+      },
+      {
+        title: "IT Strategy / vCIO",
+        body: "Senior-level planning, accountability reviews, and operational direction aligned to business goals.",
       },
     ],
   },
-  compliance: {
-    title: "Stay compliant—stay trusted",
-    subtitle: "Built to meet global standards across security, privacy, and industry regulations.",
-    items: ["SOC 2", "ISO 27001", "ISO 27701", "HIPAA", "GDPR", "PCI DSS"],
-  },
-  integrations: {
-    title: "Drive efficiency with contextual integrations",
-    subtitle:
-      "From service desk tools to collaboration platforms, it works with what you already use. Or personalize the experience using our open APIs.",
-    topRow: ["CONNECTWISE", "servicenow", "BigPanda", "PagerDuty", "Opsgenie", "HALOPSA"],
-    bottomRow: ["webhooks", "Moogsoft", "slack", "zendesk", "freshservice"],
-  },
-  quickLinks: {
-    title: "Quick Links",
+  proof: {
+    title: "Delivery built on defined systems",
+    subtitle: "Clear service foundations designed for predictable, accountable delivery.",
     items: [
-      { title: "ROI calculator", href: "#", tone: "blue" as const },
-      { title: "Client Onboarding", href: "#", tone: "green" as const },
-      { title: "Help Documentation", href: "#", tone: "amber" as const },
-      { title: "Getting started guide", href: "#", tone: "red" as const },
-      { title: "Newsletters", href: "/resources", tone: "slate" as const },
+      "Defined SLA and response structure",
+      "Clear ownership of infrastructure and risk",
+      "Structured onboarding and documentation",
+      "Quarterly service reviews with leadership",
+    ],
+  },
+  resourcesPreview: {
+    title: "Guidance for confident IT decisions",
+    cards: [
+      {
+        title: "What Managed IT Costs in Scotland (2026 Guide)",
+        description: "Board-level clarity on pricing models, scope boundaries, and accountability expectations.",
+      },
+      {
+        title: "Security Baselines for Microsoft 365",
+        description: "What businesses miss most often and how to close practical gaps without disruption.",
+      },
+      {
+        title: "From Reactive IT to Structured Environments",
+        description: "A practical framework to move from firefighting to controlled, measurable operations.",
+      },
     ],
   },
   closingCta: {
-    title: "Not just a tool—a partner",
-    subtitle: "Set the platform, services, and support to grow your MSP business.",
-    buttonLabel: "START A FREE TRIAL",
-    buttonHref: "/free-trial",
+    title: "Ready for controlled, accountable IT delivery?",
+    buttonLabel: "Book a Structured IT Review",
+    buttonHref: "/contact",
   },
 } as const;

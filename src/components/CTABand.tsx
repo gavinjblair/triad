@@ -20,7 +20,7 @@ export function CTABand({
   className,
 }: Props) {
   return (
-    <section className={cn("py-14 md:py-16", tone === "hero" ? "msp-hero" : "msp-hero-soft", className)}>
+    <section className={cn("py-24 md:py-28", tone === "hero" ? "msp-hero" : "msp-hero-soft", className)}>
       <Container size="content" className="text-center">
         <h2 className="text-[56px] font-bold tracking-[-0.02em] text-msp-ink">
           {title}

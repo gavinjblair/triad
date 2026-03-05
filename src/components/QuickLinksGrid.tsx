@@ -34,7 +34,7 @@ export function QuickLinksGrid({ title, items, className }: Props) {
             key={item.title}
             href={item.href}
             className={cn(
-              "group flex min-h-[120px] flex-col items-center justify-center rounded-[8px] border px-4 py-4 text-center transition-colors hover:bg-white",
+              "group flex min-h-[104px] flex-col items-center justify-center rounded-[8px] border p-4 text-center transition-colors hover:bg-white",
               toneClass[item.tone],
             )}
           >

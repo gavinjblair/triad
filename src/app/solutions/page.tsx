@@ -1,125 +1,132 @@
-import { Accordion } from "@/components/Accordion";
+"use client";
+
+import { useMemo, useState } from "react";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { CTABand } from "@/components/CTABand";
-import { IntegrationsRow } from "@/components/IntegrationsRow";
+import { Tabs } from "@/components/Tabs";
 import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { solutionsContent } from "@/content/solutions";
+import { cn } from "@/lib/cn";
 
-function WorkspaceDiagram() {
+function ServiceVisual({ tone }: { tone: "blue" | "green" | "amber" | "purple" | "slate" }) {
   return (
-    <div className="mx-auto mt-8 max-w-[760px] rounded-[8px] border border-[#d8e3ef] bg-[#f5f9ff] p-5">
-      <div className="mx-auto w-[180px] rounded-[8px] border border-[#bdd4ef] bg-white px-4 py-3 text-center text-[13px] font-bold text-[#2e6fbf]">
-        ENDPOINT DEVICES
+    <VisualPlaceholder tone={tone} className="h-[176px] rounded-[8px] border-gray-100">
+      <div className="relative h-full p-3">
+        <div className="absolute left-3 top-3 h-8 w-16 rounded-[6px] border border-[#d8e5f1] bg-white/90" />
+        <div className="absolute right-3 top-3 h-8 w-16 rounded-[6px] border border-[#d8e5f1] bg-white/90" />
+        <div className="absolute bottom-4 left-1/2 h-[84px] w-[64%] -translate-x-1/2 rounded-[7px] border border-[#d8e5f1] bg-white/90" />
       </div>
-      <div className="mx-auto mt-5 flex max-w-[640px] items-center justify-between gap-4">
-        {["Desktop", "Laptop", "Servers"].map((item) => (
-          <div
-            key={item}
-            className="flex h-12 min-w-[96px] items-center justify-center rounded-md border border-[#cdddef] bg-white text-[11px] font-semibold text-msp-muted"
-          >
-            {item}
-          </div>
-        ))}
-        {["Rugged", "TV", "Kiosk"].map((item) => (
-          <div
-            key={item}
-            className="flex h-12 min-w-[96px] items-center justify-center rounded-md border border-[#cdddef] bg-white text-[11px] font-semibold text-msp-muted"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-8 text-[11px] font-semibold text-msp-muted">
-        {["Windows", "FreeBSD", "Apple", "HP AX", "Linux", "IBM AX"].map((item) => (
-          <span key={item}>{item}</span>
-        ))}
-      </div>
-    </div>
+    </VisualPlaceholder>
   );
 }
 
 export default function SolutionsPage() {
-  const { hero, tabs, automation, manageTitle, integrations, cta } = solutionsContent;
+  const { hero, tabs, whatYouWontFind, operatingModel, closingCta } = solutionsContent;
+  const [activeTab, setActiveTab] = useState<string>(tabs[0]?.value ?? "");
+  const tabItems = useMemo(
+    () => tabs.map((item) => ({ value: item.value, label: item.label })),
+    [tabs],
+  );
+  const activeContent = tabs.find((tab) => tab.value === activeTab) ?? tabs[0];
 
   return (
     <>
-      <section className="msp-hero py-14">
-        <Container size="content" className="text-center">
-          <h1 className="text-[54px] font-bold tracking-[-0.03em] text-msp-ink">{hero.title}</h1>
-          <p className="mt-3 text-[18px] text-msp-ink">{hero.subtitle}</p>
-          <Button href={hero.cta.href} size="sm" className="mt-6 h-[44px] px-6 text-[13px]">
-            {hero.cta.label}
-          </Button>
+      <section className="msp-hero py-24 md:py-28">
+        <Container size="content">
+          <div className="text-center">
+            <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
+            <h1 className="mx-auto mt-3 max-w-[820px] text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">
+              {hero.title}
+            </h1>
+            <p className="mx-auto mt-4 max-w-[820px] text-[15px] leading-relaxed text-msp-ink">{hero.subtitle}</p>
+            <div className="mt-6">
+              <Button href={hero.cta.href} size="sm">
+                {hero.cta.label}
+              </Button>
+            </div>
+          </div>
         </Container>
       </section>
 
-      <section className="bg-white pb-16 pt-6">
+      <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <div className="overflow-hidden rounded-[9px] border border-msp-border bg-white">
-            <div className="flex flex-wrap">
-              {tabs.map((tab, index) => (
-                <button
-                  type="button"
-                  key={tab}
-                  className="border-r border-msp-border px-4 py-4 text-[13px] font-semibold text-msp-muted transition-colors hover:text-msp-ink last:border-r-0"
-                >
-                  <span className={index === 0 ? "border-b-2 border-msp-blue pb-3 text-msp-ink" : ""}>{tab}</span>
-                </button>
-              ))}
-            </div>
+          <Tabs items={tabItems} value={activeTab} onValueChange={setActiveTab} variant="pill" />
+
+          <div className="mt-8">
+            <h2 className="text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{activeContent.label}</h2>
+            <p className="mt-3 max-w-[860px] text-[14px] leading-relaxed text-msp-muted">{activeContent.intro}</p>
           </div>
 
-          <div className="mt-4 flex items-center justify-between gap-5">
+          <div className="mt-8 space-y-12">
+            {activeContent.blocks.map((block, index) => (
+              <article key={block.title} className="grid items-center gap-10 md:grid-cols-2">
+                <div className={cn(index % 2 === 1 && "md:order-2")}>
+                  <h3 className="text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">{block.title}</h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{block.description}</p>
+                  <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                    {block.bullets.map((bullet) => (
+                      <li key={bullet} className="relative pl-4">
+                        <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className={cn(index % 2 === 1 && "md:order-1")}>
+                  <ServiceVisual tone={index % 2 === 0 ? "blue" : "slate"} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#f5f5f6] py-20">
+        <Container size="content">
+          <div className="grid gap-6 rounded-[12px] border border-gray-100 bg-white p-6 shadow-msp-card md:grid-cols-[1fr_420px]">
             <div>
-              <h2 className="text-[45px] font-bold tracking-[-0.02em] text-msp-ink">{automation.title}</h2>
-              <p className="mt-2 max-w-[640px] text-[14px] leading-7 text-msp-ink">{automation.subtitle}</p>
+              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">WHAT YOU WON&apos;T FIND</p>
+              <h2 className="mt-2 text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{whatYouWontFind.title}</h2>
+              <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{whatYouWontFind.subtitle}</p>
             </div>
-            <Button href="#" variant="secondary" size="sm" className="h-[40px] min-w-[132px] text-[12px]">
-              {automation.ctaLabel}
-            </Button>
-          </div>
-
-          <div className="mt-6 grid gap-0 overflow-hidden rounded-[10px] border border-[#dbe4ee] md:grid-cols-2">
-            <VisualPlaceholder tone="blue" className="min-h-[310px] rounded-none border-0 border-r border-[#dbe4ee]">
-              <div className="grid h-full grid-cols-2 gap-3 p-4">
-                <div className="rounded border border-[#c9d8eb] bg-white/90 p-3" />
-                <div className="rounded border border-[#c9d8eb] bg-white/90 p-3" />
-                <div className="col-span-2 rounded border border-[#c9d8eb] bg-white/90 p-3" />
-              </div>
-            </VisualPlaceholder>
-            <div className="bg-[#edf2f7] p-5">
-              <Accordion
-                items={automation.accordion.map((item) => ({ ...item }))}
-                defaultOpenId={automation.accordion[0]?.id}
-              />
+            <div className="rounded-[10px] border border-gray-100 bg-[#f7f8fa] p-4">
+              <ul className="grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                {whatYouWontFind.items.map((item) => (
+                  <li key={item} className="relative pl-4">
+                    <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-[13px] font-semibold text-msp-ink">{whatYouWontFind.closing}</p>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-white pb-14 pt-6">
-        <Container size="content" className="text-center">
-          <h2 className="text-[46px] font-bold tracking-[-0.02em] text-msp-ink">{manageTitle}</h2>
-          <WorkspaceDiagram />
-        </Container>
-      </section>
-
-      <section className="bg-[#f3f4f6] py-16">
+      <section className="bg-white py-20">
         <Container size="content">
-          <IntegrationsRow
-            title={integrations.title}
-            subtitle={integrations.subtitle}
-            topRow={integrations.topRow}
-            bottomRow={integrations.bottomRow}
-          />
+          <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">OPERATING MODEL</p>
+          <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{operatingModel.title}</h2>
+          <p className="mt-3 max-w-[820px] text-[14px] leading-relaxed text-msp-muted">{operatingModel.subtitle}</p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-4">
+            {operatingModel.steps.map((step) => (
+              <article key={step} className="rounded-[10px] border border-gray-100 bg-white p-4 shadow-msp-card">
+                <h3 className="text-[20px] font-bold text-msp-ink">{step}</h3>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-6 text-[13px] font-semibold text-msp-ink">{operatingModel.summary}</p>
         </Container>
       </section>
 
       <CTABand
-        title={cta.title}
-        buttonLabel={cta.buttonLabel}
-        buttonHref={cta.buttonHref}
+        title={closingCta.title}
+        buttonLabel={closingCta.buttonLabel}
+        buttonHref={closingCta.buttonHref}
         tone="heroSoft"
       />
     </>

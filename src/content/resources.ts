@@ -1,64 +1,104 @@
 export type ResourceItem = {
   label: string;
+  description: string;
+  href?: string;
   tone?: "blue" | "slate" | "green" | "amber" | "purple" | "dark";
-  highlightLabel?: string;
 };
 
 export const resourcesContent = {
-  title: "Resources",
-  subtitle: "Explore MSP Central better with free access to our complete library of online resources.",
-  categories: ["Overview", "Documents", "Featured Resources", "Newsletter"],
+  hero: {
+    eyebrow: "RESOURCES",
+    title: "Structured guidance for confident IT decisions.",
+    subtitle:
+      "Practical decision support for security, Microsoft 365, continuity, and managed service planning.",
+    bullets: [
+      "Executive-level clarity without jargon or sales pressure.",
+      "Structured comparisons focused on scope, risk, and accountability.",
+      "Actionable guidance written for owners and leadership teams.",
+    ],
+    primaryCta: { label: "Read Strategic Guide", href: "#strategic-guides" },
+    secondaryCta: { label: "Get a Free IT Cost Comparison", href: "/contact" },
+  },
+  categories: ["Strategic Guides", "Operational Guides", "Security Guides"],
   sections: [
     {
-      id: "overview",
-      title: "Overview",
+      id: "strategic-guides",
+      title: "Strategic Guides",
       items: [
-        { label: "Compliance", tone: "blue" },
-        { label: "Architecture", tone: "blue" },
-        { label: "Getting Started Guide", tone: "blue" },
-        { label: "Business Benefits", tone: "blue" },
+        {
+          label: "What Managed IT Actually Includes (Beyond Tickets)",
+          description:
+            "A clear explanation of what structured managed IT covers - scope, standards, responsibility, and what to expect.",
+          tone: "blue",
+        },
+        {
+          label: "What Managed IT Costs in Scotland (2026 Guide)",
+          description:
+            "A practical breakdown of what influences cost in Scotland and how to compare providers properly.",
+          tone: "blue",
+        },
+        {
+          label: "From Reactive IT to Structured Environments",
+          description:
+            "Why reactive support creates long-term risk and what changes when environments are run with structure.",
+          tone: "blue",
+        },
       ] satisfies ResourceItem[],
     },
     {
-      id: "documents",
-      title: "Documents",
+      id: "operational-guides",
+      title: "Operational Guides",
       items: [
-        { label: "Help", tone: "blue" },
-        { label: "How to", tone: "blue" },
-        { label: "Knowledge Base", tone: "blue" },
-        { label: "Integrations", tone: "dark", highlightLabel: "READ NOW" },
+        {
+          label: "What Good Onboarding Looks Like",
+          description:
+            "What a proper onboarding process includes - discovery, baselines, documentation, and stabilisation.",
+          tone: "green",
+        },
+        {
+          label: "Structured IT Operational Baseline Assessment",
+          description:
+            "A practical framework used to review scope, security posture, and documented responsibility before management begins.",
+          tone: "green",
+        },
+        {
+          label: "Service Scope and SLA Response Times",
+          description:
+            "How to evaluate response commitments and whether providers can deliver controlled service outcomes.",
+          tone: "green",
+        },
       ] satisfies ResourceItem[],
     },
     {
-      id: "featured",
-      title: "Featured Resources",
+      id: "security-guides",
+      title: "Security Guides",
       items: [
-        { label: "What are Managed IT Services?", tone: "blue" },
-        { label: "AI in MSP Central", tone: "blue" },
-        { label: "Automation in MSP Central", tone: "blue" },
-        { label: "Client Onboarding", tone: "blue" },
-        { label: "Datasheet", tone: "blue" },
-      ] satisfies ResourceItem[],
-    },
-    {
-      id: "newsletter",
-      title: "Newsletter",
-      items: [
-        { label: "February 2026", tone: "dark" },
-        { label: "January 2026", tone: "purple" },
-        { label: "December 2025", tone: "blue" },
-        { label: "November 2025", tone: "blue" },
-        { label: "October 2025", tone: "blue" },
-        { label: "September 2025", tone: "blue" },
-        { label: "August 2025", tone: "blue" },
-        { label: "July 2025", tone: "dark", highlightLabel: "READ NOW" },
-        { label: "June 2025", tone: "blue" },
-        { label: "May 2025", tone: "blue" },
-        { label: "April 2025", tone: "blue" },
-        { label: "March 2025", tone: "blue" },
-        { label: "February 2025", tone: "blue" },
-        { label: "January 2025", tone: "blue" },
+        {
+          label: "Security Baselines for Microsoft 365 (What Most Businesses Miss)",
+          description:
+            "The practical security essentials most organisations overlook when adopting Microsoft 365.",
+          tone: "amber",
+        },
+        {
+          label: "Identity Risk and Access Control Essentials",
+          description:
+            "How to reduce identity risk using policy design, role control, and practical governance.",
+          tone: "amber",
+        },
+        {
+          label: "Backup Readiness and Recovery Testing",
+          description:
+            "What recovery readiness really requires and how to validate continuity in operational reality.",
+          tone: "amber",
+        },
       ] satisfies ResourceItem[],
     },
   ],
+  closingCta: {
+    title: "Need clarity on your current IT position?",
+    buttonLabel: "Book a Structured IT Review",
+    secondaryLabel: "Get a Free IT Cost Comparison",
+    buttonHref: "/contact",
+    secondaryHref: "/pricing",
+  },
 } as const;

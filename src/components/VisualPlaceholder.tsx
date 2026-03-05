@@ -22,7 +22,7 @@ export function VisualPlaceholder({ tone = "blue", label, className, children, .
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[10px] border border-msp-border bg-gradient-to-br",
+        "relative overflow-hidden rounded-[10px] border border-gray-100 bg-gradient-to-br",
         toneClass[tone],
         className,
       )}

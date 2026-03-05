@@ -1,13 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
+import { BrandConveyor } from "@/components/BrandConveyor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { CTABand } from "@/components/CTABand";
-import { IntegrationsRow } from "@/components/IntegrationsRow";
-import { LogoRow } from "@/components/LogoRow";
-import { QuickLinksGrid } from "@/components/QuickLinksGrid";
-import { StatCard } from "@/components/StatCard";
 import { Tabs } from "@/components/Tabs";
 import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { homeContent } from "@/content/home";
@@ -15,125 +13,139 @@ import { cn } from "@/lib/cn";
 
 function HeroDashboard() {
   return (
-    <VisualPlaceholder tone="blue" className="h-[250px] rounded-[10px] border-[#b8cfe9]">
-      <div className="grid h-full grid-cols-2 gap-3 p-4">
-        <div className="rounded-[7px] border border-[#c3d8ef] bg-white/85 p-3">
-          <div className="h-2 w-24 rounded-full bg-[#8bb7ef]" />
-          <div className="mt-3 grid grid-cols-3 gap-2">
-            <div className="h-8 rounded bg-[#e8f1fd]" />
-            <div className="h-8 rounded bg-[#e8f1fd]" />
-            <div className="h-8 rounded bg-[#e8f1fd]" />
-          </div>
-        </div>
-        <div className="rounded-[7px] border border-[#c3d8ef] bg-white/85 p-3">
-          <div className="h-2 w-20 rounded-full bg-[#8bb7ef]" />
-          <div className="mt-4 h-20 rounded bg-[#edf4ff]" />
-        </div>
-        <div className="rounded-[7px] border border-[#c3d8ef] bg-white/85 p-3">
-          <div className="h-2 w-16 rounded-full bg-[#8bb7ef]" />
-          <div className="mt-3 h-12 rounded bg-[#edf4ff]" />
-        </div>
-        <div className="rounded-[7px] border border-[#c3d8ef] bg-white/85 p-3">
-          <div className="h-2 w-16 rounded-full bg-[#8bb7ef]" />
-          <div className="mt-3 h-12 rounded bg-[#edf4ff]" />
-        </div>
-      </div>
-    </VisualPlaceholder>
+    <div className="mx-auto w-full max-w-[760px]">
+      <Image
+        src="/images/illustrations/hero-dashboard.svg"
+        alt="MSP operations dashboard with devices, security, backup, tickets, health and patch metrics"
+        width={760}
+        height={460}
+        priority
+        className="h-auto w-full"
+      />
+    </div>
   );
 }
 
-function OperationVisual({ tone }: { tone: "blue" | "slate" | "green" | "amber" | "purple" }) {
+function ModelVisual({ tone }: { tone: "blue" | "slate" | "green" | "amber" | "purple" }) {
   return (
-    <VisualPlaceholder tone={tone} className="h-[186px] rounded-[8px] border-[#d4e0ef]">
+    <VisualPlaceholder tone={tone} className="h-[176px] rounded-[8px] border-[#eef2f7]">
       <div className="relative h-full p-3">
-        <div className="absolute left-3 top-3 rounded border border-[#c8d9ed] bg-white px-3 py-2 text-[10px] font-semibold text-msp-muted">
-          Overview
+        <div className="absolute left-3 top-2 rounded border border-[#d6e4f2] bg-white px-2.5 py-1 text-[9px] font-semibold text-msp-muted">
+          Baseline
         </div>
-        <div className="absolute right-3 top-3 rounded border border-[#c8d9ed] bg-white px-3 py-2 text-[10px] font-semibold text-msp-muted">
-          Analytics
+        <div className="absolute right-3 top-2 rounded border border-[#d6e4f2] bg-white px-2.5 py-1 text-[9px] font-semibold text-msp-muted">
+          Review
         </div>
-        <div className="absolute bottom-4 left-1/2 h-[78px] w-[62%] -translate-x-1/2 rounded-[7px] border border-[#c8d9ed] bg-white/90" />
+        <div className="absolute left-3 top-8 h-9 w-16 rounded-[6px] border border-[#d6e4f2] bg-white/90" />
+        <div className="absolute right-3 top-8 h-9 w-16 rounded-[6px] border border-[#d6e4f2] bg-white/90" />
+        <div className="absolute bottom-4 left-1/2 h-[78px] w-[62%] -translate-x-1/2 rounded-[7px] border border-[#d6e4f2] bg-white/90" />
       </div>
     </VisualPlaceholder>
   );
 }
 
 export default function HomePage() {
-  const { hero, brands, integrated, operations, compliance, integrations, quickLinks, closingCta } =
-    homeContent;
+  const {
+    hero,
+    brands,
+    problem,
+    operatingModel,
+    coreServices,
+    proof,
+    resourcesPreview,
+    closingCta,
+  } = homeContent;
 
-  const [activeTab, setActiveTab] = useState<string>(
-    operations.tabs[operations.tabs.length - 1]?.value ?? "reports",
-  );
-  const tabs = useMemo(() => operations.tabs, [operations.tabs]);
+  const [activeModelTab, setActiveModelTab] = useState<string>(operatingModel.tabs[0]?.value ?? "");
+  const modelTabs = useMemo(() => operatingModel.tabs, [operatingModel.tabs]);
 
   return (
     <>
-      <section className="msp-hero py-14 md:py-16">
+      <section className="msp-hero py-24 md:py-28">
         <Container size="content">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_470px]">
             <div>
-              <h1 className="max-w-[620px] text-[54px] font-bold leading-[1.08] tracking-[-0.03em] text-msp-ink">
-                {hero.title.lead}
-                <span className="text-msp-blue">{hero.title.highlight}</span>
-                {hero.title.tail}
+              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
+              <h1 className="mt-3 max-w-[660px] text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">
+                {hero.title}
               </h1>
-              <p className="mt-5 text-[21px] text-msp-ink">{hero.subtitle}</p>
-              <div className="mt-6">
-                <Button href={hero.cta.href} size="sm" className="h-[44px] px-5 text-[13px]">
-                  {hero.cta.label}
+              <p className="mt-5 max-w-[620px] text-[15px] leading-relaxed text-msp-ink">{hero.description}</p>
+              <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                {hero.bullets.map((bullet) => (
+                  <li key={bullet} className="relative pl-4">
+                    <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href={hero.primaryCta.href} size="sm">
+                  {hero.primaryCta.label}
+                </Button>
+                <Button href={hero.secondaryCta.href} variant="secondary" size="sm">
+                  {hero.secondaryCta.label}
                 </Button>
               </div>
             </div>
             <HeroDashboard />
           </div>
+          <p className="mx-auto mt-8 max-w-[860px] text-center text-[12px] font-medium leading-relaxed text-msp-muted">
+            {hero.credibilityStrip}
+          </p>
         </Container>
       </section>
 
-      <section className="bg-white py-14">
+      <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <LogoRow title={brands.title} items={brands.items.map((name) => ({ name }))} />
+          <BrandConveyor title={brands.title} subtitle={brands.subtitle} />
         </Container>
       </section>
 
-      <section className="bg-white py-16">
-        <Container size="content" className="text-center">
-          <h2 className="text-[44px] font-bold tracking-[-0.02em] text-msp-ink">{integrated.title}</h2>
-          <p className="mx-auto mt-5 max-w-[880px] text-[15px] leading-7 text-msp-muted">{integrated.body}</p>
-          <div className="mx-auto mt-8 grid max-w-[820px] gap-4 md:grid-cols-2">
-            {integrated.stats.map((item) => (
-              <StatCard key={item.value} value={item.value} label={item.label} />
+      <section className="bg-white py-20">
+        <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{problem.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{problem.subtitle}</p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {problem.items.map((item) => (
+              <article key={item.title} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+                <h3 className="text-[22px] font-bold tracking-[-0.02em] text-msp-ink">{item.title}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{item.body}</p>
+              </article>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <h2 className="text-center text-[42px] font-bold tracking-[-0.02em] text-msp-ink">
-            {operations.title}
-          </h2>
-          <Tabs items={tabs} value={activeTab} onValueChange={setActiveTab} variant="pill" className="mt-8" />
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{operatingModel.title}</h2>
+            <p className="mx-auto mt-3 max-w-[780px] text-[14px] leading-relaxed text-msp-muted">
+              {operatingModel.description}
+            </p>
+          </div>
 
-          <div className="mt-10 space-y-14">
-            {operations.blocks.map((block) => (
+          <Tabs items={modelTabs} value={activeModelTab} onValueChange={setActiveModelTab} variant="pill" className="mt-8" />
+
+          <div className="mt-10 space-y-12">
+            {operatingModel.blocks.map((block, index) => (
               <article key={block.id} className="grid items-center gap-10 md:grid-cols-2">
-                <div className={cn(block.align === "right" && "md:order-2")}>
-                  <h3 className="text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">
-                    {block.title}
-                  </h3>
-                  <p className="mt-4 max-w-[500px] text-[14px] leading-7 text-msp-muted">{block.description}</p>
-                  <Button
-                    href="#"
-                    variant="secondary"
-                    size="sm"
-                    className="mt-5 h-[38px] rounded-[2px] px-4 text-[11px]"
-                  >
-                    {block.cta}
-                  </Button>
+                <div className={cn(index % 2 === 1 && "md:order-2")}>
+                  <h3 className="text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">{block.title}</h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{block.description}</p>
+                  <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                    {block.bullets.map((bullet) => (
+                      <li key={bullet} className="relative pl-4">
+                        <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className={cn(block.align === "right" && "md:order-1")}>
-                  <OperationVisual tone={block.tone} />
+                <div className={cn(index % 2 === 1 && "md:order-1")}>
+                  <ModelVisual tone={block.tone} />
                 </div>
               </article>
             ))}
@@ -141,13 +153,32 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-white py-16">
-        <Container size="content" className="text-center">
-          <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{compliance.title}</h2>
-          <p className="mx-auto mt-3 max-w-[760px] text-[14px] text-msp-muted">{compliance.subtitle}</p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
-            {compliance.items.map((item) => (
-              <div key={item} className="flex h-[52px] min-w-[116px] items-center justify-center rounded-full border border-msp-border bg-white px-5 text-[12px] font-semibold text-msp-muted">
+      <section className="bg-white py-20">
+        <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{coreServices.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{coreServices.subtitle}</p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {coreServices.cards.map((card) => (
+              <article key={card.title} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+                <h3 className="text-[23px] font-bold tracking-[-0.02em] text-msp-ink">{card.title}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{card.body}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#f5f5f6] py-20">
+        <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{proof.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{proof.subtitle}</p>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-[920px] gap-3 md:grid-cols-2">
+            {proof.items.map((item) => (
+              <div key={item} className="rounded-[10px] border border-gray-100 bg-white px-4 py-3 text-[13px] text-msp-ink shadow-msp-card">
                 {item}
               </div>
             ))}
@@ -155,26 +186,24 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-[#f3f4f6] py-16">
+      <section className="bg-white py-20">
         <Container size="content">
-          <IntegrationsRow
-            title={integrations.title}
-            subtitle={integrations.subtitle}
-            topRow={integrations.topRow}
-            bottomRow={integrations.bottomRow}
-          />
-        </Container>
-      </section>
-
-      <section className="bg-[#f3f4f6] py-16">
-        <Container size="content">
-          <QuickLinksGrid title={quickLinks.title} items={quickLinks.items} />
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{resourcesPreview.title}</h2>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-[980px] gap-4 md:grid-cols-3">
+            {resourcesPreview.cards.map((card) => (
+              <article key={card.title} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+                <h3 className="text-[20px] font-bold leading-tight text-msp-ink">{card.title}</h3>
+                <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{card.description}</p>
+              </article>
+            ))}
+          </div>
         </Container>
       </section>
 
       <CTABand
         title={closingCta.title}
-        subtitle={closingCta.subtitle}
         buttonLabel={closingCta.buttonLabel}
         buttonHref={closingCta.buttonHref}
         tone="heroSoft"

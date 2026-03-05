@@ -164,7 +164,7 @@ export function Header({ topLinks, mainLinks, ctaHref, ctaLabel }: HeaderProps) 
 
             <div className="hidden items-center gap-9 pt-5 xl:flex">
               <DesktopNav items={mainLinks} pathname={pathname} />
-              <Button href={ctaHref} size="sm" className="h-[46px] min-w-[154px] rounded-[6px] px-6 text-[18px]">
+              <Button href={ctaHref} size="sm" className="min-w-[238px] text-[12px]">
                 {ctaLabel}
               </Button>
             </div>

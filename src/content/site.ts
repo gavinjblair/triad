@@ -1,20 +1,15 @@
 import type { NavItem } from "@/components/Header";
 
 export const topLinks: NavItem[] = [
-  { label: "Products", href: "/products" },
-  { label: "Store", href: "/store" },
-  { label: "Partners", href: "/partners" },
-  { label: "Affiliate", href: "/affiliate" },
-  { label: "Support", href: "/support" },
+  { label: "Edinburgh - Glasgow - Stirling", href: "/contact" },
+  { label: "0131 555 0123", href: "/contact" },
 ];
 
 export const mainLinks: NavItem[] = [
   { label: "Overview", href: "/" },
-  { label: "Solutions", href: "/solutions", hasDropdown: true },
-  { label: "Features", href: "/features" },
-  { label: "Demo", href: "/demo" },
-  { label: "Get Quote", href: "/get-quote" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
-  { label: "Support", href: "/support" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
-

@@ -12,7 +12,7 @@ export function PlaceholderPage({ title, subtitle }: Props) {
   return (
     <>
       <PageHero title={title} subtitle={subtitle} tone="heroSoft" size="md" />
-      <Section className="py-16">
+      <Section className="py-20">
         <Container size="content">
           <Card className="text-center">
             <p className="text-[15px] text-msp-muted">
