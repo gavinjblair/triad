@@ -1,44 +1,77 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import {
+  Activity,
+  ChartGantt,
+  Cloud,
+  Compass,
+  DatabaseBackup,
+  FileText,
+  LifeBuoy,
+  Network,
+  Settings,
+  Server,
+  Shield,
+  ShieldCheck,
+  TrendingUp,
+} from "lucide-react";
 import { useMemo, useState } from "react";
-import { BrandConveyor } from "@/components/BrandConveyor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { CTABand } from "@/components/CTABand";
+import { Icon } from "@/components/Icon";
 import { Tabs } from "@/components/Tabs";
 import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { homeContent } from "@/content/home";
 import { cn } from "@/lib/cn";
 
-function HeroDashboard() {
-  return (
-    <div className="mx-auto w-full max-w-[760px]">
-      <Image
-        src="/images/illustrations/hero-dashboard.svg"
-        alt="MSP operations dashboard with devices, security, backup, tickets, health and patch metrics"
-        width={760}
-        height={460}
-        priority
-        className="h-auto w-full"
-      />
-    </div>
-  );
-}
+const modelTabIcons = {
+  infrastructure: Network,
+  security: Shield,
+  documentation: FileText,
+  monitoring: Activity,
+  governance: ChartGantt,
+} as const;
 
-function ModelVisual({ tone }: { tone: "blue" | "slate" | "green" | "amber" | "purple" }) {
+const coreServiceIcons = {
+  "Managed IT Services": Server,
+  Cybersecurity: ShieldCheck,
+  "Microsoft 365 Management": Cloud,
+  "Backup & Disaster Recovery": DatabaseBackup,
+  "IT Strategy / vCIO": Compass,
+} as const;
+
+const workStepIcons = {
+  Operate: Settings,
+  Protect: Shield,
+  Recover: LifeBuoy,
+  Improve: TrendingUp,
+} as const;
+
+function ModelVisual({
+  tone,
+  imageSrc,
+  imageAlt,
+}: {
+  tone: "blue" | "slate" | "green" | "amber" | "purple";
+  imageSrc: string;
+  imageAlt: string;
+}) {
   return (
-    <VisualPlaceholder tone={tone} className="h-[176px] rounded-[8px] border-[#eef2f7]">
-      <div className="relative h-full p-3">
-        <div className="absolute left-3 top-2 rounded border border-[#d6e4f2] bg-white px-2.5 py-1 text-[9px] font-semibold text-msp-muted">
-          Baseline
-        </div>
-        <div className="absolute right-3 top-2 rounded border border-[#d6e4f2] bg-white px-2.5 py-1 text-[9px] font-semibold text-msp-muted">
-          Review
-        </div>
-        <div className="absolute left-3 top-8 h-9 w-16 rounded-[6px] border border-[#d6e4f2] bg-white/90" />
-        <div className="absolute right-3 top-8 h-9 w-16 rounded-[6px] border border-[#d6e4f2] bg-white/90" />
-        <div className="absolute bottom-4 left-1/2 h-[78px] w-[62%] -translate-x-1/2 rounded-[7px] border border-[#d6e4f2] bg-white/90" />
+    <VisualPlaceholder
+      tone={tone}
+      className="h-[176px] rounded-[8px] border-[#eef2f7]"
+    >
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          style={{ objectFit: "contain" }}
+        />
       </div>
     </VisualPlaceholder>
   );
@@ -47,17 +80,36 @@ function ModelVisual({ tone }: { tone: "blue" | "slate" | "green" | "amber" | "p
 export default function HomePage() {
   const {
     hero,
-    brands,
     problem,
+    maturityModel,
     operatingModel,
     coreServices,
-    proof,
     resourcesPreview,
     closingCta,
   } = homeContent;
 
-  const [activeModelTab, setActiveModelTab] = useState<string>(operatingModel.tabs[0]?.value ?? "");
-  const modelTabs = useMemo(() => operatingModel.tabs, [operatingModel.tabs]);
+  const [activeModelTab, setActiveModelTab] = useState<string>("infrastructure");
+  const modelTabs = useMemo(
+    () =>
+      operatingModel.tabs.map((tab) => {
+        const IconSymbol = modelTabIcons[tab.value as keyof typeof modelTabIcons];
+
+        return {
+          value: tab.value,
+          label: (
+            <span className="inline-flex items-center gap-1.5">
+              <Icon icon={IconSymbol} tone="slate" badge={false} size={15} className="text-msp-subtle" />
+              <span>{tab.label}</span>
+            </span>
+          ),
+        };
+      }),
+    [operatingModel.tabs],
+  );
+  const activeModelContent = useMemo(
+    () => operatingModel.tabs.find((tab) => tab.value === activeModelTab) ?? operatingModel.tabs[0],
+    [activeModelTab, operatingModel.tabs],
+  );
 
   return (
     <>
@@ -98,17 +150,16 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <HeroDashboard />
+            <VisualPlaceholder
+              tone="blue"
+              imageSrc="/images/illustrations/hero-operational-dashboard.webp"
+              imageAlt="Operational dashboard overview"
+              className="h-[280px] rounded-[10px] border-gray-100 md:h-[336px]"
+            />
           </div>
           <p className="mx-auto mt-8 max-w-[860px] text-center text-[12px] font-medium leading-relaxed text-msp-muted">
             {hero.credibilityStrip}
           </p>
-        </Container>
-      </section>
-
-      <section className="bg-[#f5f5f6] py-20">
-        <Container size="content">
-          <BrandConveyor title={brands.title} subtitle={brands.subtitle} />
         </Container>
       </section>
 
@@ -129,6 +180,41 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <section className="bg-white py-20">
+        <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{maturityModel.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{maturityModel.subtitle}</p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {maturityModel.steps.map((step, index) => (
+              <article
+                key={`${step.level}-${step.title}`}
+                className={cn(
+                  "relative min-h-[220px] rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card",
+                  step.featured && "border-msp-blue/30 bg-[#edf4ff]",
+                  index < maturityModel.steps.length - 1 &&
+                    "xl:after:absolute xl:after:right-[-10px] xl:after:top-1/2 xl:after:w-5 xl:after:border-t xl:after:border-msp-border xl:after:content-['']",
+                )}
+              >
+                <p className={cn("text-[11px] font-bold tracking-[0.2em] text-msp-subtle", step.featured && "text-msp-blue")}>
+                  {step.level}
+                </p>
+                <h3 className="mt-2 text-[24px] font-bold tracking-[-0.02em] text-msp-ink">{step.title}</h3>
+                <ul className="mt-3 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                  {step.bullets.map((bullet) => (
+                    <li key={bullet} className="relative pl-4">
+                      <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
           <div className="text-center">
@@ -136,13 +222,21 @@ export default function HomePage() {
             <p className="mx-auto mt-3 max-w-[780px] text-[14px] leading-relaxed text-msp-muted">
               {operatingModel.description}
             </p>
+            <p className="mx-auto mt-3 max-w-[780px] text-[14px] leading-relaxed text-msp-muted">
+              {operatingModel.bridgeSentence}
+            </p>
           </div>
-
-          <Tabs items={modelTabs} value={activeModelTab} onValueChange={setActiveModelTab} variant="pill" className="mt-8" />
+          <Tabs
+            items={modelTabs}
+            value={activeModelTab}
+            onValueChange={setActiveModelTab}
+            variant="pill"
+            className="mt-8"
+          />
 
           <div className="mt-10 space-y-12">
-            {operatingModel.blocks.map((block, index) => (
-              <article key={block.id} className="grid items-center gap-10 md:grid-cols-2">
+            {activeModelContent.blocks.map((block, index) => (
+              <article key={`${activeModelContent.value}-${block.title}`} className="grid items-center gap-10 md:grid-cols-2">
                 <div className={cn(index % 2 === 1 && "md:order-2")}>
                   <h3 className="text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">{block.title}</h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{block.description}</p>
@@ -156,7 +250,7 @@ export default function HomePage() {
                   </ul>
                 </div>
                 <div className={cn(index % 2 === 1 && "md:order-1")}>
-                  <ModelVisual tone={block.tone} />
+                  <ModelVisual tone={activeModelContent.tone} imageSrc={block.imageSrc} imageAlt={block.imageAlt} />
                 </div>
               </article>
             ))}
@@ -171,27 +265,49 @@ export default function HomePage() {
             <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{coreServices.subtitle}</p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {coreServices.cards.map((card) => (
-              <article key={card.title} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
-                <h3 className="text-[23px] font-bold tracking-[-0.02em] text-msp-ink">{card.title}</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{card.body}</p>
-              </article>
-            ))}
+            {coreServices.cards.map((card) => {
+              const cardContent = (
+                <article className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+                  <div className="flex items-center gap-2.5">
+                    <Icon
+                      icon={coreServiceIcons[card.title as keyof typeof coreServiceIcons]}
+                      tone="blue"
+                      badge
+                      size={15}
+                    />
+                    <h3 className="text-[23px] font-bold tracking-[-0.02em] text-msp-ink">{card.title}</h3>
+                  </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{card.body}</p>
+                </article>
+              );
+
+              return "href" in card ? (
+                <Link key={card.title} href={card.href} className="block">
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={card.title}>{cardContent}</div>
+              );
+            })}
           </div>
         </Container>
       </section>
 
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <div className="text-center">
-            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{proof.title}</h2>
-            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{proof.subtitle}</p>
-          </div>
-          <div className="mx-auto mt-8 grid max-w-[920px] gap-3 md:grid-cols-2">
-            {proof.items.map((item) => (
-              <div key={item} className="rounded-[10px] border border-gray-100 bg-white px-4 py-3 text-[13px] text-msp-ink shadow-msp-card">
-                {item}
-              </div>
+          <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">OPERATING MODEL</p>
+          <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">How TRIAD IT Works</h2>
+          <p className="mt-3 max-w-[820px] text-[14px] leading-relaxed text-msp-muted">
+            Operate, protect, recover, and improve through one structured operating rhythm.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-4">
+            {(Object.keys(workStepIcons) as Array<keyof typeof workStepIcons>).map((step) => (
+              <article key={step} className="rounded-[10px] border border-gray-100 bg-white p-4 shadow-msp-card">
+                <div className="flex items-center gap-2">
+                  <Icon icon={workStepIcons[step]} tone="slate" size={16} badge />
+                  <h3 className="text-[20px] font-bold text-msp-ink">{step}</h3>
+                </div>
+              </article>
             ))}
           </div>
         </Container>
@@ -215,6 +331,14 @@ export default function HomePage() {
 
       <CTABand
         title={closingCta.title}
+        subtitle="A short consultation to review your current IT environment and discuss how structured IT management could improve stability and security."
+        reassuranceLine="No obligation. If we’re not the right fit, you’ll still leave with clear recommendations for improving your current environment."
+        reviewGainTitle="What you'll gain from the review:"
+        reviewGainItems={[
+          "A clear view of your current IT risks",
+          "Practical recommendations to improve stability and security",
+          "Guidance on whether structured IT management is the right approach",
+        ]}
         buttonLabel={closingCta.buttonLabel}
         buttonHref={closingCta.buttonHref}
         tone="heroSoft"

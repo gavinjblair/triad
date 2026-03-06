@@ -69,6 +69,17 @@ export const aboutContent = {
     ],
     modelLine: "OPERATING MODEL: STABILISE -> SECURE -> STRUCTURE -> SCALE.",
   },
+  whoWeWorkWith: {
+    title: "Who We Work With",
+    intro:
+      "TRIAD IT is designed for organisations that value structured, security-first IT operations — typically professional services, finance, engineering, and construction firms where stability and accountability matter.",
+    items: [
+      "Professional services",
+      "Finance & advisory",
+      "Architecture & engineering",
+      "Growing SMEs (5-20 users)",
+    ],
+  },
   regions: {
     title: "Supporting businesses across Central Scotland",
     body:

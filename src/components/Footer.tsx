@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/Container";
 import { GlobeIcon, MailIcon, PlayCircleIcon, PoundIcon } from "@/components/icons";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -81,6 +82,10 @@ export function Footer({ className }: Props) {
       {!hideActionStrip ? <ActionStrip /> : null}
 
       <Container size="shell" className="py-14 text-center">
+        <div className="inline-block">
+          <Logo variant="dark" />
+        </div>
+
         <p className="mx-auto max-w-[940px] text-[12px] leading-relaxed text-white/62">
           Structured delivery. Defined standards. Clear accountability.
         </p>

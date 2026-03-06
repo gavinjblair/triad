@@ -1,4 +1,8 @@
 export const solutionsContent = {
+  platforms: {
+    title: "Technology Platforms We Support",
+    subtitle: "We standardise on proven platforms to keep environments stable, secure, and supportable.",
+  },
   hero: {
     eyebrow: "SOLUTIONS",
     title: "Structured, security-first IT management.",
@@ -157,6 +161,18 @@ export const solutionsContent = {
       ],
     },
   ],
+  serviceScopeCoverage: {
+    title: "Service Scope and Operational Coverage",
+    intro:
+      "Triad IT provides structured IT operations management covering the systems organisations rely on every day.",
+    items: [
+      "Microsoft 365 environments and identity systems",
+      "Endpoint devices and configuration standards",
+      "Backup and recovery readiness",
+      "Security baseline controls and monitoring",
+      "Network and infrastructure oversight",
+    ],
+  },
   whatYouWontFind: {
     title: "What you won't find here",
     subtitle: "Delivery is built on clear scope and accountability.",

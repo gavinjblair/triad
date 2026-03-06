@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-label="Triad IT logo mark">
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1AA6FF"/>
+      <stop offset="1" stop-color="#0B5ED7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Top bar of T -->
+  <rect x="26" y="24" width="108" height="18" rx="9" fill="#0B5ED7"/>
+
+  <!-- Three pillars -->
+  <rect x="52" y="56" width="14" height="78" rx="7" fill="#084DB5"/>
+  <rect x="73" y="50" width="14" height="84" rx="7" fill="url(#accent)"/>
+  <rect x="94" y="56" width="14" height="78" rx="7" fill="#0B5ED7"/>
+
+  <!-- Base -->
+  <rect x="44" y="136" width="72" height="10" rx="5" fill="#0B5ED7" opacity="0.14"/>
+</svg>

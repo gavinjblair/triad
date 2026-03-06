@@ -12,8 +12,9 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "TRIAD IT",
-  description: "Structured, security-first IT management delivered with accountability.",
+  title: "Managed IT Services Edinburgh & the Lothians | Triad IT",
+  description:
+    "Managed IT services in Edinburgh and the Lothians. Structured, security-first IT management with accountable operations and senior oversight.",
 };
 
 export default function RootLayout({

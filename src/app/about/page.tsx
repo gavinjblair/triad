@@ -5,7 +5,7 @@ import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { aboutContent } from "@/content/about";
 
 export default function AboutPage() {
-  const { hero, whyTriad, philosophy, founder, partnership, regions, closingCta } = aboutContent;
+  const { hero, whyTriad, philosophy, founder, partnership, whoWeWorkWith, regions, closingCta } = aboutContent;
 
   return (
     <>
@@ -36,7 +36,13 @@ export default function AboutPage() {
                 </Button>
               </div>
             </div>
-            <VisualPlaceholder tone="dark" className="h-[220px] rounded-[10px] border-gray-100" />
+            <VisualPlaceholder
+              tone="dark"
+              variant="dashboard"
+              imageSrc="/images/illustrations/hero-hybrid-infrastructure.webp"
+              imageAlt="Structured IT delivery with accountability"
+              className="h-[220px] rounded-[10px] border-gray-100"
+            />
           </div>
         </Container>
       </section>
@@ -71,10 +77,32 @@ export default function AboutPage() {
 
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{whoWeWorkWith.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{whoWeWorkWith.intro}</p>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-[920px] gap-3 md:grid-cols-2">
+            {whoWeWorkWith.items.map((item) => (
+              <div key={item} className="rounded-[10px] border border-gray-100 bg-white px-4 py-3 text-[13px] text-msp-ink shadow-msp-card">
+                {item}
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#f5f5f6] py-20">
+        <Container size="content">
           <div className="grid gap-8 md:grid-cols-[1.05fr_1fr]">
             <div>
               <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{founder.title}</h2>
-              <VisualPlaceholder tone="blue" className="mt-5 h-[210px] rounded-[10px] border-gray-100" />
+              <VisualPlaceholder
+                tone="blue"
+                variant="split"
+                imageSrc="/images/illustrations/hero-managed-infrastructure.webp"
+                imageAlt="Managed infrastructure environment"
+                className="mt-5 h-[210px] rounded-[10px] border-gray-100"
+              />
               <div className="mt-5 rounded-[10px] border border-gray-100 bg-white p-4 shadow-msp-card">
                 <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">DELIVERY POSTURE</p>
                 <ul className="mt-3 grid gap-2 text-[13px] leading-relaxed text-msp-muted">

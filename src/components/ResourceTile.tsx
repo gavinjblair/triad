@@ -4,16 +4,23 @@ import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 type Props = {
   label: string;
   tone?: Parameters<typeof VisualPlaceholder>[0]["tone"];
+  imageSrc?: string;
   highlightLabel?: string;
   className?: string;
 };
 
-export function ResourceTile({ label, tone = "blue", highlightLabel, className }: Props) {
+export function ResourceTile({
+  label,
+  tone = "blue",
+  imageSrc = "/images/illustrations/diagram-it-lifecycle.webp",
+  highlightLabel,
+  className,
+}: Props) {
   return (
     <article className={cn("w-[170px]", className)}>
       <div className="overflow-hidden rounded-[8px] border border-msp-border bg-white">
         <div className="relative">
-          <VisualPlaceholder tone={tone} className="h-[95px] rounded-none border-0">
+          <VisualPlaceholder tone={tone} imageSrc={imageSrc} imageAlt={`${label} illustration`} className="h-[95px] rounded-none border-0">
             {highlightLabel ? (
               <div className="absolute inset-0 flex items-center justify-center bg-[#2a2f38]/70 text-[11px] font-bold text-white">
                 {highlightLabel}

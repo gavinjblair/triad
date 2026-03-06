@@ -1,0 +1,202 @@
+---
+title: "Microsoft 365 Security Baseline"
+excerpt: "Security controls most organisations miss when configuring Microsoft 365."
+category: "Security"
+slug: "microsoft-365-security-baseline"
+date: "2026-03-05"
+readingTime: "7 min read"
+---
+
+# Security Baselines for Microsoft 365 (What Most Businesses Miss)
+
+Microsoft 365 has become the operational backbone for many organisations. Email, file storage, collaboration tools, and identity management are often all managed within the same platform.
+
+However, many organisations assume that adopting Microsoft 365 automatically provides strong security protection. While the platform includes a wide range of security features, these controls are not always enabled or configured correctly by default.
+
+As a result, environments frequently operate with unnecessary exposure to common cyber threats such as account compromise, phishing attacks, and data leakage.
+
+A security baseline ensures that the most important protection mechanisms within Microsoft 365 are implemented consistently and maintained over time.
+
+This guide explains the core components of a Microsoft 365 security baseline and highlights the areas that organisations most commonly overlook.
+
+## Why Microsoft 365 Security Requires Active Configuration
+
+Microsoft designs Microsoft 365 to support organisations of all sizes, from small businesses to large enterprises. To maintain compatibility across this wide range of environments, many security features are configurable rather than automatically enforced.
+
+This flexibility allows organisations to adapt the platform to their needs, but it also means security settings may remain incomplete if they are not reviewed carefully.
+
+## Common issues found in unmanaged Microsoft 365 environments include:
+
+- multi-factor authentication not fully enforced
+- legacy authentication protocols still enabled
+- overly permissive administrative privileges
+- weak conditional access policies
+- limited monitoring of account activity
+
+These gaps can significantly increase the risk of account compromise.
+
+## Multi-Factor Authentication Enforcement
+
+Multi-factor authentication (MFA) is one of the most effective protections against unauthorised account access.
+
+MFA requires users to provide an additional verification factor when signing in, such as a mobile authentication prompt or security code.
+
+While many organisations enable MFA during initial setup, they often fail to enforce it consistently across all accounts.
+
+## A strong security baseline should ensure that:
+
+- MFA is required for all users
+- administrative accounts use stronger authentication policies
+- MFA bypass options are minimised
+- sign-in verification methods are secure
+
+Accounts without MFA protection remain one of the most common entry points for attackers.
+
+## Blocking Legacy Authentication
+
+Legacy authentication protocols allow older applications to connect to Microsoft 365 without modern authentication protections.
+
+These protocols often bypass MFA entirely, which makes them attractive targets for attackers attempting password-based login attacks.
+
+Examples of legacy authentication methods include older versions of email access protocols such as:
+
+- POP
+- IMAP
+- SMTP authentication
+
+A security baseline normally disables legacy authentication unless it is explicitly required for a specific system.
+
+Removing legacy protocols significantly reduces the risk of automated credential attacks.
+
+## Conditional Access Policies
+
+Conditional access policies control how users are allowed to access Microsoft 365 resources.
+
+## These policies allow organisations to define rules based on factors such as:
+
+- user identity
+- device security status
+- geographic location
+- authentication method
+
+For example, conditional access policies can require MFA when users log in from outside the organisation's network or block sign-ins from high-risk locations.
+
+Without properly configured conditional access policies, organisations rely solely on passwords and basic authentication controls.
+
+## Administrative Role Management
+
+Administrative privileges within Microsoft 365 should be tightly controlled.
+
+Accounts with administrative access can modify security settings, create new users, and access organisational data. If these accounts are compromised, the impact can be severe.
+
+## A security baseline normally includes:
+
+limiting the number of global administrators
+
+assigning role-based permissions instead of full administrative access
+
+- separating administrative accounts from standard user accounts
+- requiring MFA for all privileged accounts
+
+This approach reduces the likelihood of privilege misuse or compromise.
+
+## Email and Phishing Protection
+
+Email remains one of the most common entry points for cyber attacks.
+
+Microsoft 365 includes built-in protections designed to detect and block phishing messages, malicious attachments, and suspicious links.
+
+A security baseline typically reviews whether protections such as the following are enabled:
+
+- anti-phishing policies
+- malicious attachment filtering
+- safe link scanning
+- impersonation protection
+
+Properly configured email protection significantly reduces the number of malicious messages reaching users.
+
+## Monitoring Sign-In Activity
+
+Monitoring authentication activity is essential for detecting suspicious behaviour.
+
+## Microsoft 365 records detailed sign-in logs that can reveal indicators such as:
+
+- repeated failed login attempts
+- sign-ins from unfamiliar locations
+- unusual device access
+- impossible travel scenarios
+
+Regular review of authentication activity helps organisations detect compromised accounts early.
+
+Automated alerts can also notify administrators when risky behaviour occurs.
+
+## Secure Sharing and Data Protection
+
+Collaboration tools such as SharePoint and OneDrive allow users to share files easily with colleagues and external partners.
+
+However, poorly configured sharing settings can expose sensitive information unintentionally.
+
+## Security baseline reviews typically examine:
+
+- external sharing policies
+- guest user access
+- link sharing permissions
+- data loss prevention controls
+
+Balancing collaboration and data protection requires clear governance over how files can be shared externally.
+
+## Device and Endpoint Integration
+
+Microsoft 365 security improves significantly when integrated with device management platforms such as Microsoft Intune.
+
+Device management allows organisations to enforce security policies on the devices accessing company resources.
+
+## Examples include:
+
+- device encryption requirements
+- operating system update compliance
+- secure login policies
+- application management
+
+Requiring devices to meet security standards before accessing company data helps prevent compromised or unmanaged devices from introducing risk.
+
+## Why Security Baselines Require Ongoing Review
+
+Security is not a one-time configuration activity.
+
+New threats, platform updates, and organisational changes all affect how Microsoft 365 should be configured over time.
+
+## Maintaining a security baseline usually involves:
+
+- periodic configuration reviews
+- monitoring authentication activity
+- updating security policies as new features become available
+- testing incident response procedures
+
+Continuous oversight ensures that the environment remains aligned with evolving security requirements.
+
+## Common Security Gaps Found in Microsoft 365 Environments
+
+Organisations reviewing their environments frequently discover several recurring issues.
+
+## Examples include:
+
+- multi-factor authentication not applied to all users
+- legacy authentication protocols still enabled
+- excessive global administrator accounts
+- external sharing policies configured too broadly
+- limited monitoring of authentication activity
+
+Addressing these gaps can significantly improve overall security posture.
+
+## Final Thoughts
+
+Microsoft 365 includes powerful security capabilities, but these protections are only effective when configured and maintained correctly.
+
+A structured security baseline ensures that the most important safeguards—such as multi-factor authentication, conditional access policies, and administrative privilege controls—are implemented consistently across the organisation.
+
+By establishing and maintaining a strong security baseline, organisations can significantly reduce their exposure to common cyber threats and maintain greater confidence in the security of their collaboration platform.
+
+Unsure whether your Microsoft 365 environment meets modern security standards?
+
+A structured security review can help identify configuration gaps and ensure the platform is properly protected.

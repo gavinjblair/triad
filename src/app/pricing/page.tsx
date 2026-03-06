@@ -37,7 +37,13 @@ export default function PricingPage() {
                 </Button>
               </div>
             </div>
-            <VisualPlaceholder tone="blue" className="h-[210px] rounded-[10px] border-gray-100" />
+            <VisualPlaceholder
+              tone="blue"
+              variant="stats"
+              imageSrc="/images/illustrations/diagram-it-maturity.webp"
+              imageAlt="IT maturity pricing framework"
+              className="h-[210px] rounded-[10px] border-gray-100"
+            />
           </div>
         </Container>
       </section>

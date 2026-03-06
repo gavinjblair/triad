@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { ChevronDown, CloseIcon, MenuIcon, SearchIcon, UserIcon } from "@/components/icons";
+import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/cn";
 
 export type NavItem = {
@@ -21,30 +22,8 @@ type HeaderProps = {
   ctaLabel: string;
 };
 
-function ManageEngineMark() {
-  return (
-    <span className="relative mt-0.5 h-[18px] w-[18px] shrink-0">
-      <span className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#f17f2a] border-r-[#1f9bda]" />
-      <span className="absolute inset-[2px] rounded-full border-2 border-transparent border-t-[#1da9d6] border-r-[#f2bf42]" />
-      <span className="absolute inset-[5px] rounded-full bg-white" />
-    </span>
-  );
-}
-
 function Brand() {
-  return (
-    <Link href="/" className="inline-flex flex-col leading-none">
-      <div className="flex items-start gap-1.5">
-        <span className="text-[20px] font-bold tracking-[-0.01em] text-msp-ink sm:text-[22px]">
-          ManageEngine
-        </span>
-        <ManageEngineMark />
-      </div>
-      <span className="mt-1.5 text-[41px] font-bold tracking-[-0.02em] text-msp-ink sm:text-[43px]">
-        MSP Central
-      </span>
-    </Link>
-  );
+  return <Logo variant="light" />;
 }
 
 function DesktopNav({

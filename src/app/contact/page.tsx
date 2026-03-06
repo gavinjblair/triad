@@ -128,7 +128,13 @@ export default function ContactPage() {
             <Card className="p-5">
               <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">WHY TRIAD IT</p>
               <h3 className="mt-2 text-[36px] font-bold tracking-[-0.02em] text-msp-ink">{trustPanel.title}</h3>
-              <VisualPlaceholder tone="blue" className="mt-4 h-[170px] rounded-[8px] border-gray-100" />
+              <VisualPlaceholder
+                tone="blue"
+                variant="form"
+                imageSrc="/images/illustrations/diagram-compliance-framework.webp"
+                imageAlt="Compliance and governance framework"
+                className="mt-4 h-[170px] rounded-[8px] border-gray-100"
+              />
               <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
                 {trustPanel.bullets.map((item) => (
                   <li key={item} className="relative pl-4">

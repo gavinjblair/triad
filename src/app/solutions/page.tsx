@@ -1,28 +1,75 @@
 "use client";
 
+import { LifeBuoy, Settings, Shield, TrendingUp } from "lucide-react";
 import { useMemo, useState } from "react";
+import { BrandConveyor } from "@/components/BrandConveyor";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { CTABand } from "@/components/CTABand";
+import { Icon } from "@/components/Icon";
 import { Tabs } from "@/components/Tabs";
 import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { solutionsContent } from "@/content/solutions";
 import { cn } from "@/lib/cn";
 
-function ServiceVisual({ tone }: { tone: "blue" | "green" | "amber" | "purple" | "slate" }) {
+const stepIcons = {
+  Operate: Settings,
+  Protect: Shield,
+  Recover: LifeBuoy,
+  Improve: TrendingUp,
+} as const;
+
+function ServiceVisual({
+  tone,
+  imageSrc,
+  imageAlt,
+}: {
+  tone: "blue" | "green" | "amber" | "purple" | "slate";
+  imageSrc: string;
+  imageAlt: string;
+}) {
   return (
-    <VisualPlaceholder tone={tone} className="h-[176px] rounded-[8px] border-gray-100">
-      <div className="relative h-full p-3">
-        <div className="absolute left-3 top-3 h-8 w-16 rounded-[6px] border border-[#d8e5f1] bg-white/90" />
-        <div className="absolute right-3 top-3 h-8 w-16 rounded-[6px] border border-[#d8e5f1] bg-white/90" />
-        <div className="absolute bottom-4 left-1/2 h-[84px] w-[64%] -translate-x-1/2 rounded-[7px] border border-[#d8e5f1] bg-white/90" />
-      </div>
-    </VisualPlaceholder>
+    <VisualPlaceholder
+      tone={tone}
+      imageSrc={imageSrc}
+      imageAlt={imageAlt}
+      className="h-[176px] rounded-[8px] border-gray-100"
+    />
   );
 }
 
+const tabVisuals = {
+  "managed-it": [
+    "/images/illustrations/hero-managed-infrastructure.webp",
+    "/images/illustrations/managed-it-automation.webp",
+  ],
+  cybersecurity: [
+    "/images/illustrations/endpoint-security-management.webp",
+    "/images/illustrations/identity-access-control.webp",
+  ],
+  "microsoft-365": [
+    "/images/illustrations/m365-governance-framework.webp",
+    "/images/illustrations/Conditional-access-policy-illustration.webp",
+  ],
+  "backup-dr": [
+    "/images/illustrations/backup-replication-on-architecture.webp",
+    "/images/illustrations/site-failover-architecture.webp",
+  ],
+  vcio: [
+    "/images/illustrations/hero-it-strategy-review.webp",
+    "/images/illustrations/diagram-it-maturity.webp",
+  ],
+} as const;
+
+function getSolutionVisual(
+  tabValue: keyof typeof tabVisuals,
+  index: number,
+) {
+  return tabVisuals[tabValue][index] ?? "/images/illustrations/hero-managed-infrastructure.webp";
+}
+
 export default function SolutionsPage() {
-  const { hero, tabs, whatYouWontFind, operatingModel, closingCta } = solutionsContent;
+  const { platforms, hero, tabs, serviceScopeCoverage, whatYouWontFind, operatingModel, closingCta } = solutionsContent;
   const [activeTab, setActiveTab] = useState<string>(tabs[0]?.value ?? "");
   const tabItems = useMemo(
     () => tabs.map((item) => ({ value: item.value, label: item.label })),
@@ -45,7 +92,22 @@ export default function SolutionsPage() {
                 {hero.cta.label}
               </Button>
             </div>
+            <div className="mx-auto mt-8 max-w-[900px]">
+              <VisualPlaceholder
+                tone="blue"
+                imageSrc="/images/illustrations/hero-hybrid-infrastructure.webp"
+                imageAlt="Structured security-first IT management"
+                className="h-[260px] rounded-[10px] border-gray-100"
+              />
+            </div>
           </div>
+        </Container>
+      </section>
+
+      <section className="bg-[#f5f5f6] py-20">
+        <Container size="content">
+          <BrandConveyor title={platforms.title} />
+          <p className="mt-3 text-center text-[13px] text-msp-muted">{platforms.subtitle}</p>
         </Container>
       </section>
 
@@ -74,11 +136,34 @@ export default function SolutionsPage() {
                   </ul>
                 </div>
                 <div className={cn(index % 2 === 1 && "md:order-1")}>
-                  <ServiceVisual tone={index % 2 === 0 ? "blue" : "slate"} />
+                  <ServiceVisual
+                    tone={index % 2 === 0 ? "blue" : "slate"}
+                    imageSrc={getSolutionVisual(activeContent.value as keyof typeof tabVisuals, index)}
+                    imageAlt={`${block.title} illustration`}
+                  />
                 </div>
               </article>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="bg-white py-20">
+        <Container size="content">
+          <div className="text-center">
+            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{serviceScopeCoverage.title}</h2>
+            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">
+              {serviceScopeCoverage.intro}
+            </p>
+          </div>
+          <ul className="mx-auto mt-8 grid max-w-[920px] gap-2 text-[13px] leading-relaxed text-msp-muted md:grid-cols-2">
+            {serviceScopeCoverage.items.map((item) => (
+              <li key={item} className="relative pl-4">
+                <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
+                {item}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
@@ -114,7 +199,10 @@ export default function SolutionsPage() {
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {operatingModel.steps.map((step) => (
               <article key={step} className="rounded-[10px] border border-gray-100 bg-white p-4 shadow-msp-card">
-                <h3 className="text-[20px] font-bold text-msp-ink">{step}</h3>
+                <div className="flex items-center gap-2">
+                  <Icon icon={stepIcons[step as keyof typeof stepIcons]} tone="slate" size={16} badge />
+                  <h3 className="text-[20px] font-bold text-msp-ink">{step}</h3>
+                </div>
               </article>
             ))}
           </div>

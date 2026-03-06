@@ -5,6 +5,26 @@ import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { resourcesContent } from "@/content/resources";
 import { cn } from "@/lib/cn";
 
+const sectionIllustrations = {
+  "strategic-guides": [
+    "/images/illustrations/hero-it-strategy-review.webp",
+    "/images/illustrations/hero-it-strategy-review.webp",
+    "/images/illustrations/hero-it-strategy-review.webp",
+    "/images/illustrations/hero-it-strategy-review.webp",
+    "/images/illustrations/hero-it-strategy-review.webp",
+  ],
+  "operational-guides": [
+    "/images/illustrations/hero-operational-dashboard.webp",
+    "/images/illustrations/hero-operational-dashboard.webp",
+    "/images/illustrations/hero-operational-dashboard.webp",
+  ],
+  "security-guides": [
+    "/images/illustrations/endpoint-security-management.webp",
+    "/images/illustrations/endpoint-security-management.webp",
+    "/images/illustrations/endpoint-security-management.webp",
+  ],
+} as const;
+
 export default function ResourcesPage() {
   const { hero, categories, sections, closingCta } = resourcesContent;
 
@@ -36,7 +56,13 @@ export default function ResourcesPage() {
                 </Button>
               </div>
             </div>
-            <VisualPlaceholder tone="blue" className="h-[220px] rounded-[10px] border-gray-100" />
+            <VisualPlaceholder
+              tone="blue"
+              variant="list"
+              imageSrc="/images/illustrations/hero-it-strategy-review.webp"
+              imageAlt="Structured guidance resources"
+              className="h-[220px] rounded-[10px] border-gray-100"
+            />
           </div>
         </Container>
       </section>
@@ -67,30 +93,43 @@ export default function ResourcesPage() {
                 <section key={section.id} id={section.id} className="scroll-mt-20">
                   <h2 className="text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{section.title}</h2>
                   <div className="mt-5 grid gap-4">
-                    {section.items.map((item) => {
+                    {section.items.map((item, itemIndex) => {
                       const guideHref = "href" in item ? item.href : undefined;
-
-                      return (
-                        <article key={item.label} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+                      const card = (
+                        <article className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
                           <div className="grid gap-4 md:grid-cols-[1fr_190px] md:items-center">
                             <div>
                               <h3 className="text-[24px] font-bold text-msp-ink">{item.label}</h3>
                               {!guideHref ? <p className="mt-1 text-[12px] text-msp-subtle">Coming soon</p> : null}
                               <p className="mt-2 text-[14px] leading-relaxed text-msp-muted">{item.description}</p>
                               {guideHref ? (
-                                <Link href={guideHref} className="mt-3 inline-block text-[12px] font-semibold text-msp-blue">
-                                  Read guide
-                                </Link>
+                                <span className="mt-3 inline-block text-[12px] font-semibold text-msp-blue">Read guide</span>
                               ) : (
                                 <span className="mt-3 inline-block text-[12px] font-semibold text-msp-subtle">Read guide</span>
                               )}
                             </div>
                             <VisualPlaceholder
                               tone={item.tone ?? (sectionIndex % 2 === 0 ? "blue" : "green")}
+                              variant="list"
+                              imageSrc={
+                                sectionIllustrations[section.id as keyof typeof sectionIllustrations][itemIndex] ??
+                                "/images/illustrations/diagram-it-lifecycle.webp"
+                              }
+                              imageAlt={`${item.label} guide illustration`}
                               className="h-[110px] rounded-[8px] border-gray-100"
                             />
                           </div>
                         </article>
+                      );
+
+                      return (
+                        guideHref ? (
+                          <Link key={item.label} href={guideHref} className="block">
+                            {card}
+                          </Link>
+                        ) : (
+                          <div key={item.label}>{card}</div>
+                        )
                       );
                     })}
                   </div>
