@@ -63,9 +63,10 @@ export default function CybersecuritySmesEdinburghPage() {
             </div>
             <VisualPlaceholder
               tone="blue"
+              framed={false}
               imageSrc="/images/illustrations/endpoint-security-management.webp"
               imageAlt="Cybersecurity services for SMEs in Edinburgh"
-              className="h-[280px] rounded-[10px] border-gray-100 md:h-[336px]"
+              className="h-[280px] md:h-[336px]"
             />
           </div>
         </Container>

@@ -12,7 +12,7 @@ export const aboutContent = {
       "Senior leadership remains directly responsible for outcomes.",
     ],
     primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
-    secondaryCta: { label: "View Solutions", href: "/solutions" },
+    secondaryCta: { label: "View Services", href: "/services" },
   },
   whyTriad: {
     title: "Why TRIAD exists",

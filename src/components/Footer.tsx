@@ -13,7 +13,7 @@ type Props = {
 
 const footerPrimaryLinks = [
   { label: "Overview", href: "/" },
-  { label: "Solutions", href: "/solutions" },
+  { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },

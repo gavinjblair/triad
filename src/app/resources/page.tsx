@@ -59,9 +59,10 @@ export default function ResourcesPage() {
             <VisualPlaceholder
               tone="blue"
               variant="list"
+              framed={false}
               imageSrc="/images/illustrations/hero-it-strategy-review.webp"
               imageAlt="Structured guidance resources"
-              className="h-[220px] rounded-[10px] border-gray-100"
+              className="h-[220px]"
             />
           </div>
         </Container>

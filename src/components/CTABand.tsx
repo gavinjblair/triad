@@ -6,11 +6,13 @@ type Props = {
   title: string;
   subtitle?: string;
   reassuranceLine?: string;
+  reassuranceLinePosition?: "above" | "below";
   reviewGainTitle?: string;
   reviewGainItems?: string[];
   buttonLabel: string;
   buttonHref: string;
   tone?: "hero" | "heroSoft";
+  backgroundImage?: string;
   className?: string;
 };
 
@@ -18,21 +20,30 @@ export function CTABand({
   title,
   subtitle,
   reassuranceLine,
+  reassuranceLinePosition = "above",
   reviewGainTitle,
   reviewGainItems,
   buttonLabel,
   buttonHref,
   tone = "heroSoft",
+  backgroundImage,
   className,
 }: Props) {
+  const sectionStyle = backgroundImage ? { backgroundImage } : undefined;
+
   return (
-    <section className={cn("py-24 md:py-28", tone === "hero" ? "msp-hero" : "msp-hero-soft", className)}>
+    <section
+      className={cn("py-24 md:py-28", backgroundImage ? undefined : tone === "hero" ? "msp-hero" : "msp-hero-soft", className)}
+      style={sectionStyle}
+    >
       <Container size="content" className="text-center">
         <h2 className="text-[56px] font-bold tracking-[-0.02em] text-msp-ink">
           {title}
         </h2>
         {subtitle ? <p className="mt-3 text-[15px] text-msp-muted">{subtitle}</p> : null}
-        {reassuranceLine ? <p className="mt-3 text-[15px] text-msp-muted">{reassuranceLine}</p> : null}
+        {reassuranceLine && reassuranceLinePosition === "above" ? (
+          <p className="mt-3 text-[15px] text-msp-muted">{reassuranceLine}</p>
+        ) : null}
         {reviewGainTitle ? <p className="mt-4 text-[15px] text-msp-muted">{reviewGainTitle}</p> : null}
         {reviewGainItems?.length ? (
           <ul className="mx-auto mt-3 grid max-w-[820px] gap-2 text-[13px] leading-relaxed text-msp-muted">
@@ -49,6 +60,9 @@ export function CTABand({
             {buttonLabel}
           </Button>
         </div>
+        {reassuranceLine && reassuranceLinePosition === "below" ? (
+          <p className="mt-3 text-[12px] leading-relaxed text-msp-muted">{reassuranceLine}</p>
+        ) : null}
       </Container>
     </section>
   );

@@ -19,4 +19,4 @@ Open `http://localhost:3000`.
 - `/support`
 - `/get-quote`
 
-Placeholder routes also exist for items shown in the header/top bar (e.g. `/demo`, `/solutions`, `/free-trial`).
+Placeholder routes also exist for items shown in the header/top bar (e.g. `/demo`, `/services`, `/free-trial`).

@@ -52,7 +52,7 @@ export const homeContent = {
       "Senior oversight of delivery",
     ],
     primaryCta: { label: "Book a Free IT Review", href: "/contact" },
-    secondaryCta: { label: "View Solutions", href: "/solutions" },
+    secondaryCta: { label: "View Services", href: "/services" },
   },
   brands: {
     title: "Technology Platforms We Support",

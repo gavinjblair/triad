@@ -73,9 +73,9 @@ export const contactContent = {
   },
   closingCta: {
     title: "Prefer to explore first?",
-    subtitle: "View solutions and pricing before booking an assessment.",
-    primaryLabel: "View Solutions",
-    primaryHref: "/solutions",
+    subtitle: "View Services and pricing before booking an assessment.",
+    primaryLabel: "View Services",
+    primaryHref: "/services",
     secondaryLabel: "View Pricing",
     secondaryHref: "/pricing",
   },

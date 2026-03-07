@@ -39,9 +39,10 @@ function HeroDashboardPanel() {
   return (
     <VisualPlaceholder
       tone="slate"
+      framed={false}
       imageSrc="/images/illustrations/hero-operational-dashboard.webp"
       imageAlt="RMM operations dashboard"
-      className="mx-auto h-[260px] max-w-[900px] rounded-[10px] border-gray-100"
+      className="mx-auto h-[260px] max-w-[900px]"
     />
   );
 }

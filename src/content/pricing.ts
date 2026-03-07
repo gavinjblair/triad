@@ -10,7 +10,7 @@ export const pricingContent = {
       "Service level reflects operational maturity.",
     ],
     primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
-    secondaryCta: { label: "View Solutions", href: "/solutions" },
+    secondaryCta: { label: "View Services", href: "/services" },
   },
   philosophy: {
     eyebrow: "PRICING PHILOSOPHY",

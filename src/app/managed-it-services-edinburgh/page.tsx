@@ -51,9 +51,10 @@ export default function ManagedItServicesEdinburghPage() {
             </div>
             <VisualPlaceholder
               tone="blue"
+              framed={false}
               imageSrc="/images/illustrations/hero-operational-dashboard.webp"
               imageAlt="Managed IT services operational dashboard"
-              className="h-[280px] rounded-[10px] border-gray-100 md:h-[336px]"
+              className="h-[280px] md:h-[336px]"
             />
           </div>
         </Container>

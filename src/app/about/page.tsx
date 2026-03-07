@@ -39,9 +39,10 @@ export default function AboutPage() {
             <VisualPlaceholder
               tone="dark"
               variant="dashboard"
+              framed={false}
               imageSrc="/images/illustrations/hero-hybrid-infrastructure.webp"
               imageAlt="Structured IT delivery with accountability"
-              className="h-[220px] rounded-[10px] border-gray-100"
+              className="h-[220px]"
             />
           </div>
         </Container>

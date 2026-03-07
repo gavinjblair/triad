@@ -62,9 +62,10 @@ export default function Microsoft365ManagementEdinburghPage() {
             </div>
             <VisualPlaceholder
               tone="blue"
+              framed={false}
               imageSrc="/images/illustrations/m365-governance-framework.webp"
               imageAlt="Microsoft 365 management in Edinburgh"
-              className="h-[280px] rounded-[10px] border-gray-100 md:h-[336px]"
+              className="h-[280px] md:h-[336px]"
             />
           </div>
         </Container>

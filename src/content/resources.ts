@@ -17,7 +17,7 @@ export const resourcesContent = {
       "Actionable guidance written for owners and leadership teams.",
     ],
     primaryCta: { label: "Book a Structured IT Review", href: "/contact" },
-    secondaryCta: { label: "View Solutions", href: "/solutions" },
+    secondaryCta: { label: "View Services", href: "/services" },
   },
   categories: ["Strategic Guides", "Operational Guides", "Security Guides"],
   sections: [

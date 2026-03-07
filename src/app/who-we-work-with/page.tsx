@@ -74,9 +74,10 @@ export default function WhoWeWorkWithPage() {
             <VisualPlaceholder
               tone="blue"
               variant="list"
+              framed={false}
               imageSrc="/images/illustrations/hero-managed-infrastructure.webp"
               imageAlt="Industries supported by structured IT operations"
-              className="h-[220px] rounded-[10px] border-gray-100"
+              className="h-[220px]"
             />
           </div>
         </Container>
@@ -100,7 +101,7 @@ export default function WhoWeWorkWithPage() {
         <Container size="content">
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry) => (
-              <Link key={industry.title} href="/solutions" className="block">
+              <Link key={industry.title} href="/services" className="block">
                 <article className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
                   <h3 className="text-[23px] font-bold tracking-[-0.02em] text-msp-ink">{industry.title}</h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{industry.description}</p>
@@ -143,8 +144,8 @@ export default function WhoWeWorkWithPage() {
             <Button href="/contact" size="sm">
               Book a Structured IT Review
             </Button>
-            <Button href="/solutions" size="sm" variant="secondary">
-              View Solutions
+            <Button href="/services" size="sm" variant="secondary">
+              View Services
             </Button>
           </div>
         </Container>

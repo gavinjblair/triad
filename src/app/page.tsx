@@ -51,29 +51,22 @@ const workStepIcons = {
 } as const;
 
 function ModelVisual({
-  tone,
   imageSrc,
   imageAlt,
 }: {
-  tone: "blue" | "slate" | "green" | "amber" | "purple";
   imageSrc: string;
   imageAlt: string;
 }) {
   return (
-    <VisualPlaceholder
-      tone={tone}
-      className="h-[176px] rounded-[8px] border-[#eef2f7]"
-    >
-      <div style={{ position: "relative", width: "100%", height: "100%" }}>
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          style={{ objectFit: "contain" }}
-        />
-      </div>
-    </VisualPlaceholder>
+    <div className="relative h-[176px] w-full">
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-contain"
+      />
+    </div>
   );
 }
 
@@ -152,9 +145,10 @@ export default function HomePage() {
             </div>
             <VisualPlaceholder
               tone="blue"
+              framed={false}
               imageSrc="/images/illustrations/hero-operational-dashboard.webp"
               imageAlt="Operational dashboard overview"
-              className="h-[280px] rounded-[10px] border-gray-100 md:h-[336px]"
+              className="h-[280px] md:h-[336px]"
             />
           </div>
           <p className="mx-auto mt-8 max-w-[860px] text-center text-[12px] font-medium leading-relaxed text-msp-muted">
@@ -250,7 +244,7 @@ export default function HomePage() {
                   </ul>
                 </div>
                 <div className={cn(index % 2 === 1 && "md:order-1")}>
-                  <ModelVisual tone={activeModelContent.tone} imageSrc={block.imageSrc} imageAlt={block.imageAlt} />
+                  <ModelVisual imageSrc={block.imageSrc} imageAlt={block.imageAlt} />
                 </div>
               </article>
             ))}

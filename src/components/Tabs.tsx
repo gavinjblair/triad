@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useId, type KeyboardEvent, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 export type TabItem = {
@@ -14,6 +14,7 @@ type Props = {
   items: readonly TabItem[];
   value: string;
   onValueChange: (value: string) => void;
+  panelIdPrefix?: string;
   variant?: Variant;
   className?: string;
 };
@@ -22,9 +23,46 @@ export function Tabs({
   items,
   value,
   onValueChange,
+  panelIdPrefix,
   variant = "underline",
   className,
 }: Props) {
+  const autoIdPrefix = useId();
+  const idPrefix = panelIdPrefix ?? `tabs-${autoIdPrefix}`;
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, currentIndex: number) => {
+    if (!items.length) {
+      return;
+    }
+
+    const lastIndex = items.length - 1;
+    let nextIndex = currentIndex;
+
+    if (event.key === "ArrowRight") {
+      nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
+    } else if (event.key === "ArrowLeft") {
+      nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = lastIndex;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    const nextItem = items[nextIndex];
+    if (!nextItem) {
+      return;
+    }
+
+    onValueChange(nextItem.value);
+    const nextTabButton = document.getElementById(`${idPrefix}-tab-${nextItem.value}`);
+    if (nextTabButton instanceof HTMLButtonElement) {
+      nextTabButton.focus();
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -34,21 +72,31 @@ export function Tabs({
       )}
     >
       <div
+        role="tablist"
+        aria-orientation="horizontal"
         className={cn(
           "flex overflow-auto",
           variant === "underline" && "justify-start px-2",
           variant === "pill" && "justify-center gap-2 p-1",
         )}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const active = item.value === value;
+          const tabId = `${idPrefix}-tab-${item.value}`;
+          const panelId = panelIdPrefix ? `${idPrefix}-panel-${item.value}` : undefined;
           return (
             <button
               key={item.value}
+              id={tabId}
               type="button"
+              role="tab"
+              aria-selected={active}
+              aria-controls={panelId}
+              tabIndex={active ? 0 : -1}
               onClick={() => onValueChange(item.value)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
               className={cn(
-                "whitespace-nowrap transition-colors",
+                "whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-msp-blue/30",
                 variant === "underline" &&
                   "border-b-2 border-transparent px-4 py-4 text-[13px] font-semibold text-msp-muted hover:text-msp-ink",
                 variant === "underline" &&

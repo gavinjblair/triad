@@ -40,9 +40,10 @@ export default function PricingPage() {
             <VisualPlaceholder
               tone="blue"
               variant="stats"
+              framed={false}
               imageSrc="/images/illustrations/diagram-it-maturity.webp"
               imageAlt="IT maturity pricing framework"
-              className="h-[210px] rounded-[10px] border-gray-100"
+              className="h-[210px]"
             />
           </div>
         </Container>
