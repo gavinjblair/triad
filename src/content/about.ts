@@ -42,7 +42,7 @@ export const aboutContent = {
     ],
   },
   founder: {
-    title: "Founder section",
+    title: "Direct senior accountability",
     heading: "Founder & Lead Consultant",
     paragraphs: [
       "TRIAD IT is led by an IT professional with a background in structured managed services and security-focused environments.",
