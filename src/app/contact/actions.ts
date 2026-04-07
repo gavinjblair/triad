@@ -22,11 +22,54 @@ export type ContactFormState = {
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const supportEmail = "info@triad-it.co.uk";
 
 const getValue = (formData: FormData, key: string) => {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
 };
+
+async function sendResendEmail({
+  apiKey,
+  from,
+  to,
+  replyTo,
+  subject,
+  text,
+  html,
+}: {
+  apiKey: string;
+  from: string;
+  to: string[];
+  replyTo?: string;
+  subject: string;
+  text: string;
+  html: string;
+}) {
+  return fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      reply_to: replyTo,
+      subject,
+      text,
+      html,
+    }),
+  });
+}
+
+async function getErrorText(response: Response) {
+  try {
+    return await response.text();
+  } catch {
+    return "";
+  }
+}
 
 export async function submitContactAssessment(
   _previousState: ContactFormState,
@@ -76,13 +119,13 @@ export async function submitContactAssessment(
 
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
-  const toEmail = process.env.CONTACT_TO_EMAIL ?? "info@triad-it.co.uk";
+  const toEmail = process.env.CONTACT_TO_EMAIL ?? supportEmail;
 
   if (!resendApiKey || !fromEmail) {
     return {
       status: "error",
       message:
-        "Email delivery is not configured yet. Add RESEND_API_KEY and CONTACT_FROM_EMAIL in Vercel to enable form submissions.",
+        "Email delivery is not configured yet. Add RESEND_API_KEY and CONTACT_FROM_EMAIL (for example, TRIAD IT <info@triad-it.co.uk>) in Vercel to enable form submissions.",
       values,
     };
   }
@@ -116,20 +159,14 @@ export async function submitContactAssessment(
     </div>
   `;
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [toEmail],
-      reply_to: values.email,
-      subject,
-      text: lines.join("\n"),
-      html,
-    }),
+  const response = await sendResendEmail({
+    apiKey: resendApiKey,
+    from: fromEmail,
+    to: [toEmail],
+    replyTo: values.email,
+    subject,
+    text: lines.join("\n"),
+    html,
   });
 
   if (!response.ok) {
@@ -140,8 +177,66 @@ export async function submitContactAssessment(
     };
   }
 
+  const confirmationSubject = "We received your TRIAD IT request";
+  const confirmationText = [
+    `Hi ${values.name},`,
+    "",
+    "Thanks for contacting TRIAD IT.",
+    "We have received your request and will review it shortly.",
+    "",
+    "We will respond within one business day.",
+    "",
+    "TRIAD IT",
+    supportEmail,
+  ].join("\n");
+
+  const confirmationHtml = `
+    <div style="font-family: Arial, sans-serif; color: #101826; line-height: 1.6;">
+      <p>Hi ${values.name},</p>
+      <p>Thanks for contacting TRIAD IT.</p>
+      <p>We have received your request and will review it shortly.</p>
+      <p>We will respond within one business day.</p>
+      <p style="margin-top: 24px;">
+        <strong>TRIAD IT</strong><br />
+        ${supportEmail}
+      </p>
+    </div>
+  `;
+
+  const confirmationResponse = await sendResendEmail({
+    apiKey: resendApiKey,
+    from: fromEmail,
+    to: [values.email],
+    replyTo: supportEmail,
+    subject: confirmationSubject,
+    text: confirmationText,
+    html: confirmationHtml,
+  }).catch((error) => {
+    console.error("Contact confirmation email request failed:", error);
+    return null;
+  });
+
+  if (!confirmationResponse) {
+    return {
+      status: "success",
+      message:
+        "Your request has been sent. We received it successfully, but the confirmation email could not be delivered automatically.",
+    };
+  }
+
+  if (!confirmationResponse.ok) {
+    const confirmationError = await getErrorText(confirmationResponse);
+    console.error("Contact confirmation email was rejected by Resend:", confirmationResponse.status, confirmationError);
+
+    return {
+      status: "success",
+      message:
+        "Your request has been sent. We received it successfully, but the confirmation email could not be delivered automatically.",
+    };
+  }
+
   return {
     status: "success",
-    message: "Your request has been sent. We will respond within one business day.",
+    message: "Your request has been sent. We have also emailed you a confirmation and will respond within one business day.",
   };
 }
