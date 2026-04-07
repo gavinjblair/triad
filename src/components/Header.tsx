@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
-import { ChevronDown, CloseIcon, MenuIcon, SearchIcon, UserIcon } from "@/components/icons";
+import { ChevronDown, CloseIcon, MenuIcon } from "@/components/icons";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/cn";
 
@@ -218,21 +218,6 @@ export function Header({ topLinks, mainLinks, ctaHref, ctaLabel }: HeaderProps) 
                     {item.label}
                   </Link>
                 ))}
-                <span className="text-msp-border-strong">|</span>
-                <Link
-                  href="/account"
-                  aria-label="Account"
-                  className="text-msp-muted transition-colors hover:text-msp-ink"
-                >
-                  <UserIcon className="h-[18px] w-[18px]" />
-                </Link>
-                <Link
-                  href="/search"
-                  aria-label="Search"
-                  className="text-msp-muted transition-colors hover:text-msp-ink"
-                >
-                  <SearchIcon className="h-[18px] w-[18px]" />
-                </Link>
               </div>
             </div>
 
@@ -243,15 +228,7 @@ export function Header({ topLinks, mainLinks, ctaHref, ctaLabel }: HeaderProps) 
               </Button>
             </div>
 
-            <div className="flex items-center justify-between xl:hidden">
-              <div className="flex items-center gap-3 text-msp-muted">
-                <Link href="/account" aria-label="Account" className="rounded-md border border-msp-border p-2">
-                  <UserIcon className="h-4 w-4" />
-                </Link>
-                <Link href="/search" aria-label="Search" className="rounded-md border border-msp-border p-2">
-                  <SearchIcon className="h-4 w-4" />
-                </Link>
-              </div>
+            <div className="flex items-center justify-end xl:hidden">
               <button
                 type="button"
                 onClick={() =>

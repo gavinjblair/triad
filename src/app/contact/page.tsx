@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
-import { Checkbox, Input, Label, Select } from "@/components/FormControls";
+import { ContactAssessmentForm } from "@/app/contact/ContactAssessmentForm";
 import { contactContent } from "@/content/contact";
 
 export default function ContactPage() {
@@ -55,78 +55,7 @@ export default function ContactPage() {
         <Container size="content">
           <div className="grid gap-6 md:grid-cols-[1fr_360px]">
             <Card className="p-6">
-              <div className="mb-6 max-w-[760px]">
-                <p className="msp-eyebrow">{form.eyebrow}</p>
-                <h2 className="msp-subsection-title mt-2">{form.title}</h2>
-                <p className="msp-body mt-3">{form.subtitle}</p>
-              </div>
-              <form className="grid gap-4" aria-label={form.title}>
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div>
-                    <Label htmlFor="contact-name">{form.fields.name}</Label>
-                    <Input id="contact-name" name="name" className="mt-2 h-[40px]" />
-                  </div>
-                  <div>
-                    <Label htmlFor="contact-email">{form.fields.email}</Label>
-                    <Input id="contact-email" name="email" type="email" className="mt-2 h-[40px]" />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-3">
-                  <div>
-                    <Label htmlFor="contact-company">{form.fields.company}</Label>
-                    <Input id="contact-company" name="company" className="mt-2 h-[40px]" />
-                  </div>
-                  <div>
-                    <Label htmlFor="contact-industry">{form.fields.industry}</Label>
-                    <Input
-                      id="contact-industry"
-                      name="industry"
-                      placeholder={form.industryPlaceholder}
-                      className="mt-2 h-[40px]"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="contact-users">{form.fields.users}</Label>
-                    <Select id="contact-users" name="users" className="mt-2 h-[40px]">
-                      {form.usersOptions.map((option) => (
-                        <option key={option}>{option}</option>
-                      ))}
-                    </Select>
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="contact-phone">{form.fields.phone}</Label>
-                  <Input id="contact-phone" name="phone" className="mt-2 h-[40px]" />
-                </div>
-
-                <div>
-                  <Label htmlFor="contact-setup">{form.fields.setup}</Label>
-                  <textarea
-                    id="contact-setup"
-                    name="setup"
-                    className="mt-2 min-h-[84px] w-full rounded-md border border-gray-100 bg-white px-4 py-2 text-[13px] text-msp-ink outline-none focus:border-msp-blue"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="contact-goal">{form.fields.goal}</Label>
-                  <Input id="contact-goal" name="goal" className="mt-2 h-[40px]" />
-                </div>
-
-                <label className="inline-flex items-center gap-2 text-[14px] leading-relaxed text-msp-muted">
-                  <Checkbox name="consent" />
-                  {form.consentLabel}
-                </label>
-
-                <div>
-                  <Button type="submit" size="sm">
-                    {form.submitLabel}
-                  </Button>
-                </div>
-                <p className="text-[14px] leading-relaxed text-msp-muted">{form.privacyNote}</p>
-              </form>
+              <ContactAssessmentForm form={form} />
             </Card>
 
             <Card className="p-6">

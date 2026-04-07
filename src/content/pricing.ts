@@ -32,7 +32,7 @@ export const pricingContent = {
     cards: [
       {
         name: "Essential",
-        price: "GBP 89",
+        price: "£89",
         note: "per managed user / month",
         fit: "For environments needing defined support, patching, and operational stability.",
         includes: [
@@ -45,7 +45,7 @@ export const pricingContent = {
       {
         name: "Business",
         highlightLabel: "Most organisations choose this",
-        price: "GBP 119",
+        price: "£119",
         note: "per managed user / month",
         fit: "For organisations requiring deeper security and governance controls.",
         includes: [
@@ -58,7 +58,7 @@ export const pricingContent = {
       },
       {
         name: "Enterprise",
-        price: "GBP 149",
+        price: "£149",
         note: "per managed user / month",
         fit: "For complex environments requiring broad control and senior oversight.",
         includes: [
