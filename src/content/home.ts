@@ -26,11 +26,11 @@ type MaturityStep = {
 export const homeContent = {
   hero: {
     eyebrow: "OVERVIEW",
-    title: "Structured Managed IT Services for Organisations in Edinburgh That Need Stability and Security",
+    title: "Structured Managed IT in Edinburgh with Stability, Security, and Accountability",
     description:
-      "Managed IT services delivered with security-first design, structured service management and senior oversight - replacing reactive support models with accountable IT operations. Structured IT operations management delivered with accountability and senior oversight. Based in Edinburgh, supporting organisations across the Lothians with structured managed IT services, cybersecurity and Microsoft 365 management. Designed for organisations with 5-20 users that require reliable and secure IT operations.",
+      "TRIAD delivers structured managed IT with security-first standards, defined ownership, and senior oversight. We support organisations across Edinburgh and the Lothians that need reliable day-to-day operations instead of reactive support.",
     credibilityStrip:
-      "A short consultation to review your current IT environment and identify risks or operational gaps.",
+      "A short senior-led review to identify operational gaps, reduce uncertainty, and clarify practical next steps.",
     proofStrip: [
       {
         title: "Senior-led delivery",
@@ -73,7 +73,7 @@ export const homeContent = {
   problem: {
     title: "When IT Lacks Structure",
     subtitle:
-      "Organisations without structured IT management often experience: Over time this leads to operational disruption and unmanaged risk.",
+      "Without structured ownership and standards, day-to-day IT becomes harder to trust. The result is recurring disruption, slower decisions, and unmanaged risk over time.",
     items: [
       {
         title: "Systems that fail without warning",
@@ -138,11 +138,11 @@ export const homeContent = {
     ] satisfies MaturityStep[],
   },
   operatingModel: {
-    title: "Structured IT Management",
+    title: "How Structured Delivery Works",
     description:
-      "Triad IT delivers structured IT operations management through structured service management, a security-first approach and senior oversight, combining:",
+      "TRIAD combines defined standards, security-first delivery, and senior accountability into one operating model.",
     bridgeSentence:
-      "The result is stable, accountable IT operations instead of reactive support.",
+      "The stages below show the overall delivery rhythm. The tabs beneath show what that structure looks like in practice.",
     stages: [
       {
         id: "stabilise",
@@ -593,8 +593,8 @@ export const homeContent = {
     ],
   },
   proof: {
-    title: "How Triad IT Works",
-    subtitle: "Our approach focuses on structure and accountability.",
+    title: "The delivery rhythm",
+    subtitle: "A simple operating cadence that keeps support, protection, recovery, and improvement moving together.",
     items: [
       "Structured service management",
       "Security-first architecture",
@@ -604,19 +604,22 @@ export const homeContent = {
     ],
   },
   resourcesPreview: {
-    title: "Guidance for confident IT decisions",
+    title: "Recommended reading",
     cards: [
       {
         title: "What Managed IT Costs in Scotland (2026 Guide)",
         description: "Board-level clarity on pricing models, scope boundaries, and accountability expectations.",
+        href: "/resources/managed-it-costs-scotland-2026",
       },
       {
         title: "Security Baselines for Microsoft 365",
         description: "What businesses miss most often and how to close practical gaps without disruption.",
+        href: "/resources/microsoft-365-security-baseline",
       },
       {
         title: "From Reactive IT to Structured Environments",
         description: "A practical framework to move from firefighting to controlled, measurable operations.",
+        href: "/resources/reactive-to-structured-it",
       },
     ],
   },

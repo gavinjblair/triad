@@ -3,7 +3,7 @@ import { serviceNavigationItems } from "@/content/services";
 
 export const topLinks: NavItem[] = [
   { label: "Supporting organisations across Edinburgh, Glasgow and Central Scotland.", href: "/contact" },
-  { label: "0131 555 0123", href: "/contact" },
+  { label: "0131 358 0579", href: "/contact" },
 ];
 
 export const mainLinks: NavItem[] = [

@@ -14,12 +14,12 @@ export default function AboutPage() {
         <Container size="content">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_400px]">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
-              <h1 className="mt-3 max-w-[640px] text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">
+              <p className="msp-eyebrow">{hero.eyebrow}</p>
+              <h1 className="msp-hero-title mt-3 max-w-[640px]">
                 {hero.title}
               </h1>
-              <p className="mt-5 max-w-[640px] text-[15px] leading-relaxed text-msp-ink">{hero.subtitle}</p>
-              <p className="mt-3 max-w-[680px] text-[14px] leading-relaxed text-msp-muted">{hero.credibilityLine}</p>
+              <p className="msp-lead mt-5 max-w-[640px]">{hero.subtitle}</p>
+              <p className="msp-body mt-3 max-w-[680px]">{hero.credibilityLine}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button href={hero.primaryCta.href} size="sm">
                   {hero.primaryCta.label}
@@ -34,7 +34,7 @@ export default function AboutPage() {
               <p className="mt-4 text-[16px] font-semibold leading-relaxed text-msp-ink">
                 Direct ownership stays close to delivery, with standards and accountability visible from the start.
               </p>
-              <ul className="mt-5 grid gap-3 text-[13px] leading-relaxed text-msp-muted">
+              <ul className="msp-list mt-5 grid gap-3">
                 {hero.bullets.map((bullet) => (
                   <li key={bullet} className="relative pl-5">
                     <span className="absolute left-0 top-2 h-2 w-2 rounded-full bg-msp-blue" />
@@ -52,9 +52,9 @@ export default function AboutPage() {
         <Container size="content">
           <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_320px]">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">WHY TRIAD</p>
-              <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{whyTriad.title}</h2>
-              <div className="mt-4 grid gap-3 text-[14px] leading-relaxed text-msp-muted">
+              <p className="msp-eyebrow">WHY TRIAD</p>
+              <h2 className="msp-section-title mt-2">{whyTriad.title}</h2>
+              <div className="msp-body mt-4 grid gap-3">
                 {whyTriad.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -67,7 +67,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-5 grid gap-3 rounded-[12px] border border-white bg-white/80 p-4">
                 {["Defined scope from the outset", "Senior oversight stays visible", "Security-first standards are applied consistently"].map((line) => (
-                  <p key={line} className="text-[13px] leading-relaxed text-msp-muted">
+                  <p key={line} className="text-[14px] leading-relaxed text-msp-muted">
                     {line}
                   </p>
                 ))}
@@ -83,9 +83,9 @@ export default function AboutPage() {
 
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">PHILOSOPHY</p>
-          <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{philosophy.title}</h2>
-          <p className="mt-3 max-w-[780px] text-[14px] leading-relaxed text-msp-muted">{philosophy.subtitle}</p>
+          <p className="msp-eyebrow">PHILOSOPHY</p>
+          <h2 className="msp-section-title mt-2">{philosophy.title}</h2>
+          <p className="msp-body mt-3 max-w-[780px]">{philosophy.subtitle}</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {philosophy.pillars.map((pillar, index) => {
               const PillarIcon = philosophyIcons[index];
@@ -98,8 +98,8 @@ export default function AboutPage() {
                     </span>
                     <p className="text-[11px] font-bold tracking-[0.18em] text-msp-subtle">PILLAR {index + 1}</p>
                   </div>
-                  <h3 className="mt-4 text-[24px] font-bold tracking-[-0.02em] text-msp-ink">{pillar.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{pillar.body}</p>
+                  <h3 className="msp-card-title mt-4">{pillar.title}</h3>
+                  <p className="msp-body mt-3">{pillar.body}</p>
                 </article>
               );
             })}
@@ -109,10 +109,10 @@ export default function AboutPage() {
 
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <div className="max-w-[860px]">
-            <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">WHO WE WORK WITH</p>
-            <h2 className="mt-2 text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{whoWeWorkWith.title}</h2>
-            <p className="mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{whoWeWorkWith.intro}</p>
+            <div className="max-w-[860px]">
+            <p className="msp-eyebrow">WHO WE WORK WITH</p>
+            <h2 className="msp-section-title mt-2">{whoWeWorkWith.title}</h2>
+            <p className="msp-body mt-3 max-w-[760px]">{whoWeWorkWith.intro}</p>
           </div>
           <div className="mt-8 grid max-w-[920px] gap-4 md:grid-cols-2">
             {whoWeWorkWith.items.map((item) => (
@@ -129,13 +129,13 @@ export default function AboutPage() {
         <Container size="content">
           <div className="grid gap-8 md:grid-cols-[1.05fr_1fr]">
             <div>
-              <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{founder.title}</h2>
-              <p className="mt-4 max-w-[620px] text-[15px] leading-relaxed text-msp-muted">
+              <h2 className="msp-section-title">{founder.title}</h2>
+              <p className="msp-body mt-4 max-w-[620px]">
                 The operating model only works if responsibility stays senior, visible, and close to delivery.
               </p>
               <div className="mt-5 rounded-[14px] border border-gray-100 bg-white p-5 shadow-msp-card">
                 <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">DELIVERY POSTURE</p>
-                <ul className="mt-4 grid gap-3 text-[13px] leading-relaxed text-msp-muted">
+                <ul className="msp-list mt-4 grid gap-3">
                   {founder.deliveryPosture.map((item) => (
                     <li key={item} className="relative pl-5">
                       <span className="absolute left-0 top-2 h-2 w-2 rounded-full bg-msp-blue" />
@@ -146,9 +146,9 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">LEADERSHIP</p>
-              <h3 className="mt-2 text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{founder.heading}</h3>
-              <div className="mt-4 grid gap-3 text-[14px] leading-relaxed text-msp-muted">
+              <p className="msp-eyebrow">LEADERSHIP</p>
+              <h3 className="msp-subsection-title mt-2">{founder.heading}</h3>
+              <div className="msp-body mt-4 grid gap-3">
                 {founder.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -162,9 +162,9 @@ export default function AboutPage() {
         <Container size="content">
           <div className="grid gap-8 md:grid-cols-[1fr_420px]">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">PARTNERSHIP</p>
-              <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{partnership.title}</h2>
-              <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{partnership.body}</p>
+              <p className="msp-eyebrow">PARTNERSHIP</p>
+              <h2 className="msp-section-title mt-2">{partnership.title}</h2>
+              <p className="msp-body mt-3">{partnership.body}</p>
               <div className="mt-5 rounded-[12px] border border-[#d6e6f8] bg-[#edf5ff] px-4 py-3">
                 <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">OPERATING MODEL</p>
                 <p className="mt-2 text-[13px] font-semibold text-msp-ink">{partnership.modelLine}</p>
@@ -172,7 +172,7 @@ export default function AboutPage() {
             </div>
             <div className="rounded-[14px] border border-gray-100 bg-white p-5 shadow-msp-card">
               <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">OPERATING PRINCIPLES</p>
-              <ul className="mt-4 grid gap-3 text-[13px] leading-relaxed text-msp-muted">
+              <ul className="msp-list mt-4 grid gap-3">
                 {partnership.principles.map((item) => (
                   <li key={item} className="relative pl-5">
                     <span className="absolute left-0 top-2 h-2 w-2 rounded-full bg-msp-blue" />
@@ -189,9 +189,9 @@ export default function AboutPage() {
         <Container size="content">
           <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_320px] md:items-start">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">COVERAGE</p>
-              <h2 className="mt-2 max-w-[540px] text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{regions.title}</h2>
-              <p className="mt-3 max-w-[700px] text-[14px] leading-relaxed text-msp-muted">{regions.body}</p>
+              <p className="msp-eyebrow">COVERAGE</p>
+              <h2 className="msp-section-title mt-2 max-w-[540px]">{regions.title}</h2>
+              <p className="msp-body mt-3 max-w-[700px]">{regions.body}</p>
             </div>
             <div className="rounded-[14px] border border-gray-100 bg-white p-5 shadow-msp-card">
               <div className="flex items-center gap-3">
@@ -200,7 +200,7 @@ export default function AboutPage() {
                 </span>
                 <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">SERVICE AREA</p>
               </div>
-              <p className="mt-4 text-[14px] leading-relaxed text-msp-muted">
+              <p className="msp-body mt-4">
                 Edinburgh, Glasgow, Stirling, and surrounding areas, with structured delivery designed for SMEs that need direct accountability rather than a layered support chain.
               </p>
             </div>

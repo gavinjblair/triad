@@ -26,7 +26,7 @@ type BrandConveyorProps = {
 export function BrandConveyor({ title, subtitle, className }: BrandConveyorProps) {
   return (
     <div className={cn("msp-brand-conveyor text-center", className)}>
-      {title ? <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{title}</h2> : null}
+      {title ? <h2 className="msp-section-title">{title}</h2> : null}
 
       <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="msp-brand-track flex w-max items-center gap-2 sm:gap-3">
@@ -40,14 +40,15 @@ export function BrandConveyor({ title, subtitle, className }: BrandConveyorProps
                 alt={`${logo.name} logo`}
                 width={132}
                 height={32}
-                className="h-6 w-auto object-contain sm:h-7"
+                className="object-contain"
+                style={{ width: "auto", height: "24px" }}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {subtitle ? <p className="mt-3 text-center text-[13px] text-msp-muted">{subtitle}</p> : null}
+      {subtitle ? <p className="mt-3 text-center text-[14px] leading-relaxed text-msp-muted">{subtitle}</p> : null}
     </div>
   );
 }

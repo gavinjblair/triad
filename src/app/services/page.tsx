@@ -12,11 +12,27 @@ import { cn } from "@/lib/cn";
 export const metadata: Metadata = {
   title: "Services | Triad IT",
   description:
-    "Explore TRIAD IT service lanes for managed IT, cybersecurity, Microsoft 365, backup and disaster recovery, and IT strategy support.",
+    "Explore TRIAD IT service lanes for managed IT, cybersecurity, Microsoft 365, backup and disaster recovery, domain and web hosting, and IT strategy support.",
 };
 
 export default function ServicesPage() {
   const { hero, tabsSection, supportingSection, closingCta } = servicesOverviewContent;
+  const badgeClasses = {
+    blue: "border-[#d6e6f8] bg-[#edf5ff] text-msp-blue",
+    green: "border-[#d8eddc] bg-[#eef9f1] text-[#4a9b63]",
+    amber: "border-[#f2e1c2] bg-[#fff7e9] text-[#c18b3b]",
+    purple: "border-[#dde1f5] bg-[#f5f7fd] text-[#7385b0]",
+    slate: "border-[#dce4ee] bg-[#f1f5fa] text-[#5f6d82]",
+    dark: "border-gray-200 bg-[#f7f9fc] text-msp-ink",
+  } as const;
+  const rowAccentClasses = {
+    blue: "border-l-msp-blue",
+    green: "border-l-[#5fa39f]",
+    amber: "border-l-[#bf8f58]",
+    purple: "border-l-[#7385b0]",
+    slate: "border-l-[#7b8797]",
+    dark: "border-l-msp-ink",
+  } as const;
 
   return (
     <>
@@ -24,11 +40,11 @@ export default function ServicesPage() {
         <Container size="content">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_420px]">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
-              <h1 className="mt-3 max-w-[740px] text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">
+              <p className="msp-eyebrow">{hero.eyebrow}</p>
+              <h1 className="msp-hero-title mt-3 max-w-[740px]">
                 {hero.title}
               </h1>
-              <p className="mt-5 max-w-[700px] text-[15px] leading-relaxed text-msp-ink">{hero.subtitle}</p>
+              <p className="msp-lead mt-5 max-w-[700px]">{hero.subtitle}</p>
               <div className="mt-6">
                 <Button href={hero.ctaHref} size="sm">
                   {hero.ctaLabel}
@@ -50,8 +66,8 @@ export default function ServicesPage() {
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
           <div className="text-center">
-            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{tabsSection.title}</h2>
-            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{tabsSection.subtitle}</p>
+            <h2 className="msp-section-title">{tabsSection.title}</h2>
+            <p className="msp-body mx-auto mt-3 max-w-[760px]">{tabsSection.subtitle}</p>
           </div>
 
           <ServicesOverviewTabs services={serviceOfferings} />
@@ -63,12 +79,17 @@ export default function ServicesPage() {
                 id={service.slug}
                 className="scroll-mt-40"
               >
-                <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-20">
+                <div className={cn("grid items-center gap-8 rounded-[18px] border border-gray-100 border-l-4 bg-white p-6 shadow-msp-card lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-16 lg:p-7", rowAccentClasses[service.overview.tone])}>
                   <div className={cn(index % 2 === 1 && "lg:order-2")}>
-                    <h3 className="text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">
+                    <span className={cn("inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]", badgeClasses[service.overview.tone])}>
+                      {service.overview.badge}
+                    </span>
+                    <h3 className="msp-subsection-title mt-4 max-w-[540px]">
                       {service.overview.headline}
                     </h3>
-                    <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{service.overview.description}</p>
+                    <p className="msp-body mt-3 max-w-[520px]">
+                      {service.overview.description}
+                    </p>
                     <div className="mt-6">
                       <Button href={service.href} size="sm">
                         {service.overview.ctaLabel}
@@ -77,7 +98,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className={cn(index % 2 === 1 && "lg:order-1")}>
-                    <div className="relative h-[230px] w-full md:h-[270px]">
+                    <div className="relative h-[210px] w-full md:h-[245px]">
                       <Image
                         src={service.overview.imageSrc}
                         alt={service.overview.imageAlt}
@@ -106,8 +127,8 @@ export default function ServicesPage() {
       <section className="bg-white py-20">
         <Container size="content">
           <div className="text-center">
-            <h2 className="text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{supportingSection.title}</h2>
-            <p className="mx-auto mt-3 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">
+            <h2 className="msp-section-title">{supportingSection.title}</h2>
+            <p className="msp-body mx-auto mt-3 max-w-[760px]">
               {supportingSection.intro}
             </p>
           </div>

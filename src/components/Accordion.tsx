@@ -29,7 +29,7 @@ export function Accordion({ items, defaultOpenId, className }: Props) {
               onClick={() => setOpenId(open ? null : item.id)}
               className="flex w-full items-start justify-between gap-4 text-left"
             >
-              <span className="text-[20px] font-bold tracking-[-0.01em] text-msp-ink">
+              <span className="msp-card-title">
                 {item.title}
               </span>
               <span className="mt-1 select-none text-[19px] text-msp-muted">

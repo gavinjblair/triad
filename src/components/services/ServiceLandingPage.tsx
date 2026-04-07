@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import { Compass, LayoutGrid, RotateCw, Server, Shield } from "lucide-react";
+import { Compass, Globe, LayoutGrid, RotateCw, Server, Shield } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { BrandConveyor } from "@/components/BrandConveyor";
 import { Container } from "@/components/Container";
@@ -72,6 +72,17 @@ const heroBackgroundByService: Record<ServiceSlug, HeroBackgroundTheme> = {
     watermarkClassName: "text-[#b5823f]/4",
     watermarkStrokeWidth: 1.3,
   },
+  "domain-web-hosting": {
+    gradient:
+      "radial-gradient(900px 420px at 18% 48%, rgba(224, 232, 241, 0.8) 0%, rgba(224, 232, 241, 0) 64%), radial-gradient(760px 360px at 74% 46%, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0) 70%), linear-gradient(180deg, #d1d9e4 0%, #dde4ec 56%, #e8edf3 100%)",
+    patternSvg:
+      "<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none'><circle cx='110' cy='110' r='70' stroke='%23536b87' stroke-opacity='.16' stroke-width='1.3'/><path d='M40 110H180M110 40V180' stroke='%23536b87' stroke-opacity='.12' stroke-width='1.2'/><path d='M60 72C78 84 142 84 160 72M60 148C78 136 142 136 160 148' stroke='%23536b87' stroke-opacity='.12' stroke-width='1.2' stroke-linecap='round'/></svg>",
+    patternSize: "220px 220px",
+    patternOpacity: 0.24,
+    watermarkIcon: Globe,
+    watermarkClassName: "text-[#5b6f88]/4",
+    watermarkStrokeWidth: 1.2,
+  },
   "it-strategy-vcio": {
     gradient:
       "radial-gradient(900px 420px at 20% 48%, rgba(224, 233, 243, 0.76) 0%, rgba(224, 233, 243, 0) 64%), radial-gradient(760px 360px at 72% 46%, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0) 70%), linear-gradient(180deg, #c5d2e0 0%, #d6dee8 56%, #e4eaf1 100%)",
@@ -99,6 +110,45 @@ export function ServiceLandingPage({ service }: Props) {
   const platformsSectionGradient = "linear-gradient(180deg, #f7f9fc 0%, #f4f6f9 100%)";
   const outcomesSectionGradient = "linear-gradient(180deg, #f4f6f9 0%, #eef2f6 100%)";
   const improvementsSectionGradient = "linear-gradient(180deg, #eef2f6 0%, #f4f7fb 100%)";
+  const laneAccents = {
+    blue: {
+      card: "border-t-msp-blue",
+      chip: "border-[#d6e6f8] bg-[#edf5ff] text-msp-blue",
+      highlight: "border-l-msp-blue bg-[#f8fbff]",
+      panel: "border-[#d6e6f8] bg-[#f8fbff]",
+    },
+    green: {
+      card: "border-t-[#5fa39f]",
+      chip: "border-[#d8eddc] bg-[#eef9f1] text-[#4a9b63]",
+      highlight: "border-l-[#5fa39f] bg-[#f7fbfa]",
+      panel: "border-[#d8eddc] bg-[#f7fbfa]",
+    },
+    amber: {
+      card: "border-t-[#bf8f58]",
+      chip: "border-[#f2e1c2] bg-[#fff7e9] text-[#c18b3b]",
+      highlight: "border-l-[#bf8f58] bg-[#fdf9f4]",
+      panel: "border-[#f2e1c2] bg-[#fdf9f4]",
+    },
+    purple: {
+      card: "border-t-[#7385b0]",
+      chip: "border-[#dde1f5] bg-[#f5f7fd] text-[#7385b0]",
+      highlight: "border-l-[#7385b0] bg-[#f8f9fd]",
+      panel: "border-[#dde1f5] bg-[#f8f9fd]",
+    },
+    slate: {
+      card: "border-t-[#7b8797]",
+      chip: "border-[#dce4ee] bg-[#f1f5fa] text-[#5f6d82]",
+      highlight: "border-l-[#7b8797] bg-[#f8fafc]",
+      panel: "border-[#dce4ee] bg-[#f8fafc]",
+    },
+    dark: {
+      card: "border-t-msp-ink",
+      chip: "border-gray-200 bg-[#f7f9fc] text-msp-ink",
+      highlight: "border-l-msp-ink bg-[#f8f9fb]",
+      panel: "border-gray-200 bg-[#f8f9fb]",
+    },
+  } as const;
+  const laneAccent = laneAccents[service.hero.tone];
 
   return (
     <>
@@ -118,17 +168,21 @@ export function ServiceLandingPage({ service }: Props) {
       <section className="pb-12 pt-24" style={{ backgroundImage: audienceSectionGradient }}>
         <Container size="content">
           <div className="text-center">
-            <h2 className="mb-8 text-[42px] font-bold tracking-[-0.02em] text-msp-ink">Who this is for</h2>
-            <p className="mx-auto mb-4 max-w-[820px] text-[14px] leading-relaxed text-msp-muted">
+            <h2 className="msp-section-title mb-8">Who this is for</h2>
+            <p className="msp-body mx-auto mb-4 max-w-[820px]">
               {service.whoThisIsForIntro}
             </p>
           </div>
 
           <div className="mx-auto mt-8 grid max-w-[1100px] gap-4 md:grid-cols-3">
             {service.whoThisIsFor.map((card) => (
-              <article key={card.title} className="rounded-[12px] border border-gray-100 bg-white p-6 shadow-msp-card">
-                <h3 className="text-[20px] font-semibold leading-tight text-msp-ink">{card.title}</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{card.description}</p>
+              <article
+                key={card.title}
+                className={cn("rounded-[12px] border border-gray-100 border-t-4 bg-white p-6 shadow-msp-card", laneAccent.card)}
+              >
+                <p className="text-[11px] font-bold tracking-[0.16em] text-msp-subtle">BEST FIT</p>
+                <h3 className="msp-card-title mt-3">{card.title}</h3>
+                <p className="msp-body mt-3">{card.description}</p>
               </article>
             ))}
           </div>
@@ -137,13 +191,58 @@ export function ServiceLandingPage({ service }: Props) {
 
       <section className="py-24" style={{ backgroundImage: featuresSectionGradient }}>
         <Container size="content">
-          <div className="space-y-24">
+          <article className={cn("mb-12 rounded-[20px] border p-7 shadow-msp-card md:p-8", laneAccent.panel)}>
+            <div className="grid gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:items-start">
+              <div>
+                <span
+                  className={cn(
+                    "inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]",
+                    laneAccent.chip,
+                  )}
+                >
+                  {service.signaturePanel.eyebrow}
+                </span>
+                <h2 className="msp-subsection-title mt-4 max-w-[720px]">
+                  {service.signaturePanel.title}
+                </h2>
+                <p className="msp-body mt-4 max-w-[720px]">
+                  {service.signaturePanel.description}
+                </p>
+              </div>
+
+              <ul className="grid gap-3">
+                {service.signaturePanel.points.map((point) => (
+                  <li
+                    key={point}
+                    className="rounded-[12px] border border-white/80 bg-white/75 px-4 py-3 text-[13px] leading-relaxed text-msp-ink"
+                  >
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+
+          <div className="space-y-12">
             {service.features.map((feature, index) => (
-              <article key={feature.title} className="grid items-center gap-10 md:grid-cols-2">
+              <article
+                key={feature.title}
+                className={cn(
+                  "grid items-center gap-8 rounded-[18px] border border-gray-100 bg-white p-6 shadow-msp-card md:grid-cols-2 md:p-7",
+                  index === service.signatureFeatureIndex && cn("border-l-4", laneAccent.highlight),
+                )}
+              >
                 <div className={cn(index % 2 === 1 && "md:order-2")}>
-                  <h2 className="mb-8 text-[34px] font-bold leading-[1.2] tracking-[-0.02em] text-msp-ink">{feature.title}</h2>
-                  <p className="mb-4 text-[14px] leading-relaxed text-msp-muted">{feature.description}</p>
-                  <ul className="grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+                  {index === service.signatureFeatureIndex ? (
+                    <span className={cn("inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]", laneAccent.chip)}>
+                      Signature Focus
+                    </span>
+                  ) : null}
+                  <h2 className={cn("msp-subsection-title", index === service.signatureFeatureIndex ? "mt-4" : undefined)}>
+                    {feature.title}
+                  </h2>
+                  <p className="msp-body mt-3">{feature.description}</p>
+                  <ul className="msp-list mt-4 grid gap-2">
                     {feature.bullets.map((bullet) => (
                       <li key={bullet} className="relative pl-4">
                         <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
@@ -154,7 +253,7 @@ export function ServiceLandingPage({ service }: Props) {
                 </div>
 
                 <div className={cn(index % 2 === 1 && "md:order-1")}>
-                  <div className="relative h-[200px] w-full md:h-[230px]">
+                  <div className="relative h-[190px] w-full md:h-[220px]">
                     <Image
                       src={feature.imageSrc}
                       alt={feature.imageAlt}
@@ -183,8 +282,8 @@ export function ServiceLandingPage({ service }: Props) {
       <section className="py-24" style={{ backgroundImage: outcomesSectionGradient }}>
         <Container size="content">
           <div className="text-center">
-            <h2 className="mb-8 text-[42px] font-bold tracking-[-0.02em] text-msp-ink">{service.outcomes.title}</h2>
-            <p className="mx-auto mb-4 max-w-[760px] text-[14px] leading-relaxed text-msp-muted">{service.outcomes.intro}</p>
+            <h2 className="msp-section-title mb-8">{service.outcomes.title}</h2>
+            <p className="msp-body mx-auto mb-4 max-w-[760px]">{service.outcomes.intro}</p>
           </div>
 
           <ul className="mx-auto mt-8 grid max-w-[980px] gap-4 md:grid-cols-2">
@@ -201,14 +300,14 @@ export function ServiceLandingPage({ service }: Props) {
         <Container size="content">
           <div className="mx-auto max-w-[900px]">
             <div className="text-center">
-              <h2 className="mb-8 text-[42px] font-bold tracking-[-0.02em] text-msp-ink">Typical improvements organisations see</h2>
+              <h2 className="msp-section-title mb-8">Typical improvements organisations see</h2>
             </div>
 
             <div className="mx-auto grid max-w-[900px] gap-4 md:grid-cols-2">
               {service.typicalImprovements.map((item) => (
                 <article key={item.title} className="rounded-[10px] border border-[#e6edf3] bg-[#f8fafc] p-[18px]">
-                  <h3 className="text-[20px] font-semibold leading-tight text-msp-ink">{item.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{item.description}</p>
+                  <h3 className="msp-card-title">{item.title}</h3>
+                  <p className="msp-body mt-3">{item.description}</p>
                 </article>
               ))}
             </div>

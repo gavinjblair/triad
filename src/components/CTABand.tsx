@@ -37,16 +37,16 @@ export function CTABand({
       style={sectionStyle}
     >
       <Container size="content" className="text-center">
-        <h2 className="text-[56px] font-bold tracking-[-0.02em] text-msp-ink">
+        <h2 className="msp-cta-title">
           {title}
         </h2>
-        {subtitle ? <p className="mt-3 text-[15px] text-msp-muted">{subtitle}</p> : null}
+        {subtitle ? <p className="msp-body mt-3">{subtitle}</p> : null}
         {reassuranceLine && reassuranceLinePosition === "above" ? (
-          <p className="mt-3 text-[15px] text-msp-muted">{reassuranceLine}</p>
+          <p className="msp-body mt-3">{reassuranceLine}</p>
         ) : null}
-        {reviewGainTitle ? <p className="mt-4 text-[15px] text-msp-muted">{reviewGainTitle}</p> : null}
+        {reviewGainTitle ? <p className="msp-body mt-4">{reviewGainTitle}</p> : null}
         {reviewGainItems?.length ? (
-          <ul className="mx-auto mt-3 grid max-w-[820px] gap-2 text-[13px] leading-relaxed text-msp-muted">
+          <ul className="msp-list mx-auto mt-3 grid max-w-[820px] gap-2">
             {reviewGainItems.map((item) => (
               <li key={item} className="relative pl-4 text-left">
                 <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
@@ -61,7 +61,7 @@ export function CTABand({
           </Button>
         </div>
         {reassuranceLine && reassuranceLinePosition === "below" ? (
-          <p className="mt-3 text-[12px] leading-relaxed text-msp-muted">{reassuranceLine}</p>
+          <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{reassuranceLine}</p>
         ) : null}
       </Container>
     </section>

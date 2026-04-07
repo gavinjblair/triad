@@ -5,6 +5,7 @@ export type ServiceSlug =
   | "cybersecurity"
   | "microsoft-365"
   | "backup-disaster-recovery"
+  | "domain-web-hosting"
   | "it-strategy-vcio";
 
 export type ServiceFeatureRow = {
@@ -14,6 +15,18 @@ export type ServiceFeatureRow = {
   imageSrc: string;
   imageAlt: string;
   tone: VisualTone;
+};
+
+export type ServiceHeroFocus = {
+  title: string;
+  items: [string, string, string];
+};
+
+export type ServiceSignaturePanel = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  points: [string, string, string];
 };
 
 export type ServiceAudienceCard = {
@@ -51,6 +64,7 @@ export type ServiceOffering = {
   navLabel: string;
   href: `/services/${ServiceSlug}`;
   overview: {
+    badge: string;
     headline: string;
     description: string;
     ctaLabel: string;
@@ -68,12 +82,15 @@ export type ServiceOffering = {
     imageAlt: string;
     tone: VisualTone;
   };
+  heroFocus: ServiceHeroFocus;
+  signaturePanel: ServiceSignaturePanel;
   frameworkStrip: {
     label?: string;
     items: [ServiceFrameworkItem, ServiceFrameworkItem, ServiceFrameworkItem, ServiceFrameworkItem];
   };
   whoThisIsForIntro: string;
   whoThisIsFor: ServiceAudienceCard[];
+  signatureFeatureIndex: number;
   features: ServiceFeatureRow[];
   outcomes: {
     title: string;
@@ -96,7 +113,7 @@ export const servicesOverviewContent = {
     eyebrow: "SERVICES",
     title: "Structured, security-first IT management.",
     subtitle:
-      "Five service lanes delivered through one operating model with clear scope, defined standards, and accountable delivery.",
+      "Six service lanes delivered through one operating model with clear scope, defined standards, and accountable delivery.",
     ctaLabel: "Book a Structured IT Review",
     ctaHref: "/contact",
     imageSrc: "/images/illustrations/hero-hybrid-infrastructure.webp",
@@ -133,9 +150,10 @@ export const serviceOfferings: ServiceOffering[] = [
     navLabel: "Managed IT",
     href: "/services/managed-it",
     overview: {
+      badge: "Operations",
       headline: "Structured managed IT delivery with defined operational ownership.",
       description:
-        "A disciplined support model covering monitoring, patching, documentation, and service cadence so teams can operate without constant disruption.",
+        "A disciplined support model covering monitoring, patching, and clear service cadence.",
       ctaLabel: "Explore Managed IT",
       imageSrc: "/images/illustrations/hero-managed-infrastructure.webp",
       imageAlt: "Managed infrastructure environment",
@@ -143,7 +161,7 @@ export const serviceOfferings: ServiceOffering[] = [
     },
     hero: {
       eyebrow: "MANAGED IT",
-      title: "Managed IT Services With Defined Standards And Clear Accountability",
+      title: "Managed IT With Defined Standards And Clear Accountability",
       description:
         "TRIAD applies one structured operating model across support, maintenance, and improvement so your environment stays stable, documented, and supportable.",
       primaryCtaLabel: "Book a Structured IT Review",
@@ -151,6 +169,17 @@ export const serviceOfferings: ServiceOffering[] = [
       imageSrc: "/images/illustrations/hero-managed-infrastructure.webp",
       imageAlt: "Managed IT service delivery",
       tone: "blue",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Defined support ownership", "Operational standards by default", "Regular review and improvement rhythm"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Operational ownership, not reactive dependency.",
+      description:
+        "Managed IT works best when support, maintenance, and improvement follow one controlled service model with visible ownership.",
+      points: ["Defined support pathways", "Service standards held consistently", "Reviews that translate into actions"],
     },
     frameworkStrip: {
       items: [
@@ -195,11 +224,12 @@ export const serviceOfferings: ServiceOffering[] = [
           "Businesses that need accountability, reporting, and ownership of IT operations.",
       },
     ],
+    signatureFeatureIndex: 3,
     features: [
       {
         title: "Defined support operations",
         description:
-          "Support is delivered through clear ownership, documented pathways, and controlled escalation.",
+          "Support follows clear ownership, documented pathways, and controlled escalation.",
         bullets: [
           "Service requests triaged by priority and impact",
           "Escalation pathways defined before incidents occur",
@@ -212,7 +242,7 @@ export const serviceOfferings: ServiceOffering[] = [
       {
         title: "Predictable service outcomes",
         description:
-          "A structured cadence replaces reactive firefighting, giving leadership visibility and control.",
+          "A structured cadence replaces firefighting and gives leadership clearer visibility.",
         bullets: [
           "Regular service reporting and review rhythm",
           "Actions tracked to completion with ownership",
@@ -307,9 +337,10 @@ export const serviceOfferings: ServiceOffering[] = [
     navLabel: "Cybersecurity",
     href: "/services/cybersecurity",
     overview: {
+      badge: "Protection",
       headline: "Security-first controls applied consistently across identity, endpoint, and operations.",
       description:
-        "Practical risk reduction through baseline controls, hardening discipline, and regular review without unnecessary complexity.",
+        "Practical risk reduction through baseline controls, hardening, and regular review.",
       ctaLabel: "Explore Cybersecurity",
       imageSrc: "/images/illustrations/endpoint-security-management.webp",
       imageAlt: "Cybersecurity management",
@@ -325,6 +356,17 @@ export const serviceOfferings: ServiceOffering[] = [
       imageSrc: "/images/illustrations/endpoint-security-management.webp",
       imageAlt: "Security operations oversight",
       tone: "green",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Identity and access control", "Endpoint hardening and hygiene", "Visible governance of security posture"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Identity-led protection with practical hardening.",
+      description:
+        "The strongest security posture comes from consistent controls across identity, endpoints, and governance rather than isolated tooling decisions.",
+      points: ["Access policies with clear ownership", "Hardening applied as routine discipline", "Review cadence tied to real risk"],
     },
     frameworkStrip: {
       items: [
@@ -369,6 +411,7 @@ export const serviceOfferings: ServiceOffering[] = [
           "Companies needing clear security controls and governance.",
       },
     ],
+    signatureFeatureIndex: 1,
     features: [
       {
         title: "Security baselines by default",
@@ -399,7 +442,7 @@ export const serviceOfferings: ServiceOffering[] = [
       {
         title: "Endpoint and user risk reduction",
         description:
-          "Endpoint posture is managed with policy consistency and operational hygiene, not one-off fixes.",
+          "Endpoint posture is managed through policy consistency and routine hygiene, not one-off fixes.",
         bullets: [
           "Device standards and hardening approach",
           "Patch and vulnerability discipline",
@@ -481,9 +524,10 @@ export const serviceOfferings: ServiceOffering[] = [
     navLabel: "Microsoft 365",
     href: "/services/microsoft-365",
     overview: {
+      badge: "Platform",
       headline: "Secure Microsoft 365 management with tenant governance and operational consistency.",
       description:
-        "Identity, collaboration, and administration managed through defined standards so environments remain secure and dependable as they scale.",
+        "Identity, collaboration, and administration managed through defined standards and governance.",
       ctaLabel: "Explore Microsoft 365",
       imageSrc: "/images/illustrations/m365-governance-framework.webp",
       imageAlt: "Microsoft 365 governance",
@@ -491,7 +535,7 @@ export const serviceOfferings: ServiceOffering[] = [
     },
     hero: {
       eyebrow: "MICROSOFT 365",
-      title: "Microsoft 365 Management With Security, Governance, And Ownership",
+      title: "Microsoft 365 Management With Governance And Ownership",
       description:
         "TRIAD applies structured tenant standards, identity controls, and review cadence so Microsoft 365 environments stay stable, secure, and supportable.",
       primaryCtaLabel: "Book a Structured IT Review",
@@ -499,6 +543,17 @@ export const serviceOfferings: ServiceOffering[] = [
       imageSrc: "/images/illustrations/m365-governance-framework.webp",
       imageAlt: "Microsoft 365 operating model",
       tone: "blue",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Tenant governance and policy control", "Identity and conditional access discipline", "Admin consistency across workloads"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Tenant governance that holds across daily administration.",
+      description:
+        "Microsoft 365 becomes easier to secure and support when tenant controls, identity decisions, and admin routines all follow the same operating standard.",
+      points: ["Tenant standards held across workloads", "Conditional access aligned to real use", "Admin ownership kept consistent"],
     },
     frameworkStrip: {
       items: [
@@ -543,6 +598,7 @@ export const serviceOfferings: ServiceOffering[] = [
           "Organisations needing expert oversight of Microsoft 365 configuration.",
       },
     ],
+    signatureFeatureIndex: 1,
     features: [
       {
         title: "Secure Microsoft 365 configuration",
@@ -655,9 +711,10 @@ export const serviceOfferings: ServiceOffering[] = [
     navLabel: "Backup & DR",
     href: "/services/backup-disaster-recovery",
     overview: {
+      badge: "Resilience",
       headline: "Recovery readiness managed as a core operational discipline, not a one-time setup.",
       description:
-        "Backup oversight, validation, and restore confidence delivered through structured cadence and accountability.",
+        "Backup oversight, validation, and restore confidence delivered through structured cadence.",
       ctaLabel: "Explore Backup & DR",
       imageSrc: "/images/illustrations/site-failover-architecture.webp",
       imageAlt: "Backup and disaster recovery architecture",
@@ -673,6 +730,17 @@ export const serviceOfferings: ServiceOffering[] = [
       imageSrc: "/images/illustrations/site-failover-architecture.webp",
       imageAlt: "Disaster recovery planning",
       tone: "amber",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Coverage clarity across critical systems", "Restore validation and evidence", "Continuity support with defined ownership"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Recovery confidence built on validation, not assumption.",
+      description:
+        "Backup and DR only become dependable when coverage, restore testing, and escalation readiness are treated as part of normal service operations.",
+      points: ["Coverage mapped to critical systems", "Restore evidence reviewed routinely", "Continuity decisions backed by ownership"],
     },
     frameworkStrip: {
       items: [
@@ -717,6 +785,7 @@ export const serviceOfferings: ServiceOffering[] = [
           "Companies needing dependable restoration capabilities during incidents.",
       },
     ],
+    signatureFeatureIndex: 1,
     features: [
       {
         title: "Recovery readiness as a managed discipline",
@@ -734,7 +803,7 @@ export const serviceOfferings: ServiceOffering[] = [
       {
         title: "Backup oversight and validation",
         description:
-          "Backup jobs are monitored and validated so confidence is based on evidence, not assumptions.",
+          "Backup jobs are monitored and validated so confidence is based on evidence, not assumption.",
         bullets: [
           "Coverage and success monitored proactively",
           "Failures triaged with clear escalation paths",
@@ -760,7 +829,7 @@ export const serviceOfferings: ServiceOffering[] = [
       {
         title: "Restore testing and confidence",
         description:
-          "Testing turns backup from a technical checkbox into an operationally trusted recovery capability.",
+          "Testing turns backup from a checkbox into an operationally trusted recovery capability.",
         bullets: [
           "Restore tests planned and evidenced",
           "Results reviewed with clear actions",
@@ -824,14 +893,202 @@ export const serviceOfferings: ServiceOffering[] = [
     },
   },
   {
+    slug: "domain-web-hosting",
+    label: "Domain & Web Hosting",
+    navLabel: "Domain & Hosting",
+    href: "/services/domain-web-hosting",
+    overview: {
+      badge: "Web Infrastructure",
+      headline: "Clear ownership of domains, DNS, hosting, renewals, and website continuity.",
+      description:
+        "A structured approach to registrar control, DNS changes, certificates, hosting stability, and renewals.",
+      ctaLabel: "Explore Domain & Web Hosting",
+      imageSrc: "/images/illustrations/operating-model-blueprint.webp",
+      imageAlt: "Domain and hosting infrastructure overview",
+      tone: "slate",
+    },
+    hero: {
+      eyebrow: "DOMAIN & WEB HOSTING",
+      title: "Domain And Web Hosting With Clear Ownership And Control",
+      description:
+        "TRIAD provides accountable oversight of domains, DNS, hosting providers, certificates, and renewals so critical web infrastructure stays secure, stable, and properly owned.",
+      primaryCtaLabel: "Book a Structured IT Review",
+      primaryCtaHref: "/contact",
+      imageSrc: "/images/illustrations/hero-hybrid-infrastructure.webp",
+      imageAlt: "Domain and web hosting oversight",
+      tone: "slate",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Registrar and ownership clarity", "DNS and hosting change control", "Renewal, certificate, and continuity oversight"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Web infrastructure stays safer when ownership is explicit.",
+      description:
+        "Domains, DNS, hosting, certificates, and renewals are often spread across different people and providers. This service brings them back under one accountable operating model.",
+      points: ["Registrar and access ownership clarified", "DNS and hosting changes handled cleanly", "Renewal risk surfaced before disruption"],
+    },
+    frameworkStrip: {
+      items: [
+        {
+          icon: "network",
+          label: "DNS control",
+          description: "Records, routing, and changes handled through defined ownership.",
+        },
+        {
+          icon: "server",
+          label: "Hosting stability",
+          description: "Provider coordination and hosting oversight kept accountable.",
+        },
+        {
+          icon: "shield",
+          label: "Certificate hygiene",
+          description: "HTTPS and related access controls reviewed proactively.",
+        },
+        {
+          icon: "file-text",
+          label: "Renewal continuity",
+          description: "Renewal, access, and ownership records kept clear and current.",
+        },
+      ],
+    },
+    whoThisIsForIntro:
+      "Designed for organisations that need one accountable owner for domains, DNS, website hosting, renewals, and related access.",
+    whoThisIsFor: [
+      {
+        title: "Businesses with critical public-facing websites",
+        description:
+          "Organisations that rely on websites and domains for enquiries, trust, and continuity.",
+      },
+      {
+        title: "Teams with fragmented domain or hosting ownership",
+        description:
+          "Businesses that have inherited registrar accounts, shared admin access, or unclear renewal responsibility.",
+      },
+      {
+        title: "Organisations needing stable web infrastructure",
+        description:
+          "Companies that want domain, hosting, DNS, and certificate oversight handled with less risk and more accountability.",
+      },
+    ],
+    signatureFeatureIndex: 1,
+    features: [
+      {
+        title: "Domain ownership and registrar control",
+        description:
+          "Domains are only reliable assets when ownership, registrar access, and renewal responsibility are clear and controlled.",
+        bullets: [
+          "Registrar ownership reviewed and documented",
+          "Administrative access aligned to named responsibility",
+          "Renewal dependencies made visible before they become risks",
+        ],
+        imageSrc: "/images/illustrations/operating-model-blueprint.webp",
+        imageAlt: "Domain and registrar ownership overview",
+        tone: "slate",
+      },
+      {
+        title: "DNS management and change control",
+        description:
+          "DNS changes need to be accurate, authorised, and recoverable. Structured control lowers disruption risk.",
+        bullets: [
+          "DNS records reviewed against current services",
+          "Changes handled through clear ownership and validation",
+          "Dependencies understood before edits are made",
+        ],
+        imageSrc: "/images/illustrations/core-network-architecture.webp",
+        imageAlt: "DNS and routing control overview",
+        tone: "blue",
+      },
+      {
+        title: "SSL certificate and HTTPS oversight",
+        description:
+          "Certificates, expiry dates, and related access paths are tracked so web services remain trusted and uninterrupted.",
+        bullets: [
+          "Certificate ownership and expiry tracked clearly",
+          "HTTPS posture reviewed as part of operational oversight",
+          "Avoidable outages and trust issues reduced",
+        ],
+        imageSrc: "/images/illustrations/diagram-compliance-framework.webp",
+        imageAlt: "Certificate and security oversight framework",
+        tone: "green",
+      },
+      {
+        title: "Hosting stability and provider coordination",
+        description:
+          "Hosting becomes more reliable when provider responsibilities, dependencies, and recovery expectations are clearly understood.",
+        bullets: [
+          "Hosting providers and responsibilities documented",
+          "Stability issues escalated through clear paths",
+          "Operational visibility improved across the stack",
+        ],
+        imageSrc: "/images/illustrations/hero-managed-infrastructure.webp",
+        imageAlt: "Hosting platform stability oversight",
+        tone: "amber",
+      },
+      {
+        title: "Renewal continuity and recovery readiness",
+        description:
+          "Renewals, access, and web infrastructure dependencies are reviewed so a missed payment or lost login does not become a business interruption.",
+        bullets: [
+          "Renewal timelines reviewed before they become urgent",
+          "Access recovery pathways documented clearly",
+          "Continuity risks reduced through better ownership hygiene",
+        ],
+        imageSrc: "/images/illustrations/diagram-it-lifecycle.webp",
+        imageAlt: "Renewal and lifecycle continuity planning",
+        tone: "purple",
+      },
+    ],
+    outcomes: {
+      title: "What this delivers",
+      intro:
+        "Domains and hosting should be controlled assets with clear ownership, not hidden operational risks.",
+      items: [
+        "Clear ownership of domains, registrar access, and renewals",
+        "Reduced DNS and hosting change risk",
+        "Better continuity across websites, certificates, and providers",
+        "More confidence in web infrastructure stability and recoverability",
+      ],
+    },
+    typicalImprovements: [
+      {
+        title: "Renewal risk reduced",
+        description: "Clear ownership and visibility reduce avoidable surprises around domains and certificates.",
+      },
+      {
+        title: "DNS changes become safer",
+        description: "Better records and change control lower the chance of disruption from simple edits.",
+      },
+      {
+        title: "Hosting accountability improves",
+        description: "Providers, access, and escalation paths become easier to manage and support.",
+      },
+      {
+        title: "Website continuity strengthens",
+        description: "Critical public-facing services are less vulnerable to preventable ownership and access issues.",
+      },
+    ],
+    closingCta: {
+      title: "Need clearer control of domains, DNS, and hosting?",
+      subtitle:
+        "Book a review to identify ownership gaps, reduce renewal risk, and bring web infrastructure under clearer operational control.",
+      buttonLabel: "Review your domain and hosting setup",
+      buttonHref: "/contact",
+      reassuranceLine: "20-30 minute discussion • No obligation • Practical guidance",
+      tone: "heroSoft",
+    },
+  },
+  {
     slug: "it-strategy-vcio",
     label: "IT Strategy / vCIO",
     navLabel: "IT Strategy / vCIO",
     href: "/services/it-strategy-vcio",
     overview: {
+      badge: "Leadership",
       headline: "Leadership cadence and structured decision support for measurable IT improvement.",
       description:
-        "Strategic guidance grounded in operational reality, with practical planning, prioritisation, and governance.",
+        "Strategic guidance grounded in operational reality, with practical planning and governance.",
       ctaLabel: "Explore IT Strategy / vCIO",
       imageSrc: "/images/illustrations/hero-it-strategy-review.webp",
       imageAlt: "IT strategy and governance review",
@@ -847,6 +1104,17 @@ export const serviceOfferings: ServiceOffering[] = [
       imageSrc: "/images/illustrations/hero-it-strategy-review.webp",
       imageAlt: "vCIO planning session",
       tone: "purple",
+    },
+    heroFocus: {
+      title: "SERVICE FOCUS",
+      items: ["Leadership cadence and review rhythm", "Practical prioritisation and roadmap support", "Clearer decisions grounded in operational reality"],
+    },
+    signaturePanel: {
+      eyebrow: "SIGNATURE FOCUS",
+      title: "Direction improves when decisions follow a steady leadership cadence.",
+      description:
+        "Strategy support is most useful when it turns operational reality into clearer priorities, visible trade-offs, and accountable next steps for leadership.",
+      points: ["Leadership reviews happen on a clear rhythm", "Roadmaps stay tied to business priorities", "Risk and investment decisions gain context"],
     },
     frameworkStrip: {
       items: [
@@ -891,6 +1159,7 @@ export const serviceOfferings: ServiceOffering[] = [
           "Businesses that benefit from long-term IT strategy and governance.",
       },
     ],
+    signatureFeatureIndex: 0,
     features: [
       {
         title: "Leadership cadence and review rhythm",
@@ -908,7 +1177,7 @@ export const serviceOfferings: ServiceOffering[] = [
       {
         title: "Roadmaps and priority setting",
         description:
-          "Roadmaps focus on practical outcomes, sequencing change based on risk and operational need.",
+          "Roadmaps focus on practical outcomes and sequence change around risk and operational need.",
         bullets: [
           "Priorities aligned to business impact",
           "Sequenced initiatives with realistic delivery paths",

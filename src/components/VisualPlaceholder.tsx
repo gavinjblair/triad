@@ -14,6 +14,7 @@ type Props = ComponentPropsWithoutRef<"div"> & {
   imageSrc?: string;
   imageAlt?: string;
   imagePriority?: boolean;
+  imageLoading?: "eager" | "lazy";
   framed?: boolean;
   spotlight?: boolean;
   children?: ReactNode;
@@ -26,6 +27,7 @@ export function VisualPlaceholder({
   imageSrc,
   imageAlt,
   imagePriority,
+  imageLoading,
   framed = true,
   spotlight = !framed,
   className,
@@ -40,6 +42,7 @@ export function VisualPlaceholder({
         alt={imageAlt ?? label ?? "Illustration"}
         fill
         priority={imagePriority}
+        loading={imageLoading}
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-contain"
       />

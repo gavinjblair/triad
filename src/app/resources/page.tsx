@@ -63,12 +63,12 @@ export default function ResourcesPage() {
       <section className="bg-white py-20">
         <Container size="content">
           <div className="max-w-[860px]">
-            <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
-            <h1 className="mt-3 max-w-[760px] text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">
+            <p className="msp-eyebrow">{hero.eyebrow}</p>
+            <h1 className="msp-hero-title mt-3 max-w-[760px]">
               {hero.title}
             </h1>
-            <p className="mt-5 max-w-[760px] text-[15px] leading-relaxed text-msp-ink">{hero.subtitle}</p>
-            <ul className="mt-5 grid max-w-[760px] gap-2 text-[13px] leading-relaxed text-msp-muted">
+            <p className="msp-lead mt-5 max-w-[760px]">{hero.subtitle}</p>
+            <ul className="msp-list mt-5 grid max-w-[760px] gap-2">
               {hero.bullets.map((bullet) => (
                 <li key={bullet} className="relative pl-4">
                   <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
@@ -93,7 +93,7 @@ export default function ResourcesPage() {
           <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
             <aside className="h-fit rounded-[8px] border border-gray-100 bg-white p-6 shadow-msp-card lg:sticky lg:top-24">
               <h3 className="text-[15px] font-bold tracking-[-0.01em] text-msp-ink">CATEGORIES</h3>
-              <nav className="mt-5 grid gap-2.5 text-[13px] text-msp-muted">
+              <nav className="mt-5 grid gap-2.5 text-[14px] text-msp-muted">
                 {categories.map((label, index) => (
                   <a
                     key={label}
@@ -112,15 +112,12 @@ export default function ResourcesPage() {
             <div className="space-y-12">
               {sections.map((section) => (
                 <section key={section.id} id={section.id} className="scroll-mt-20">
-                  <h2 className="text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{section.title}</h2>
+                  <h2 className="msp-section-title">{section.title}</h2>
                   <div className="mt-7 grid gap-4">
                     {section.items.map((item, itemIndex) => {
                       const guideHref = "href" in item ? item.href : undefined;
                       const GuideIcon = sectionGuideIcons[section.id]?.[itemIndex] ?? ClipboardList;
-                      const iconTone =
-                        item.tone === "green" || item.tone === "amber" || item.tone === "purple" || item.tone === "slate"
-                          ? item.tone
-                          : "blue";
+                      const iconTone = (item.tone ?? "blue") as "blue" | "green" | "amber" | "purple" | "slate";
                       const sectionStyle = sectionStyles[section.id as keyof typeof sectionStyles];
                       const card = (
                         <article
@@ -161,8 +158,8 @@ export default function ResourcesPage() {
                             )}
                           </div>
                           <div className="mt-3">
-                            <h3 className="text-[22px] font-bold text-msp-ink">{item.label}</h3>
-                            <p className="mt-2 text-[14px] leading-relaxed text-msp-muted">{item.description}</p>
+                            <h3 className="msp-card-title">{item.label}</h3>
+                            <p className="msp-body mt-2">{item.description}</p>
                           </div>
                         </article>
                       );
@@ -189,7 +186,7 @@ export default function ResourcesPage() {
         <Container size="content">
           <div className="msp-hero-soft grid items-center gap-6 rounded-[12px] border border-gray-100 p-7 shadow-msp-card md:grid-cols-[1fr_auto_auto]">
             <div>
-              <h2 className="text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{closingCta.title}</h2>
+              <h2 className="msp-section-title">{closingCta.title}</h2>
             </div>
             <Button href={closingCta.buttonHref} size="sm">
               {closingCta.buttonLabel}

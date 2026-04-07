@@ -7,7 +7,7 @@ export function Label({
 }: ComponentPropsWithoutRef<"label">) {
   return (
     <label
-      className={cn("text-[13px] font-semibold tracking-[-0.01em] text-msp-ink", className)}
+      className={cn("text-[15px] font-semibold tracking-[-0.01em] text-msp-ink", className)}
       {...props}
     />
   );

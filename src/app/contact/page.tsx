@@ -2,7 +2,6 @@ import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
 import { Checkbox, Input, Label, Select } from "@/components/FormControls";
-import { VisualPlaceholder } from "@/components/VisualPlaceholder";
 import { contactContent } from "@/content/contact";
 
 export default function ContactPage() {
@@ -13,10 +12,10 @@ export default function ContactPage() {
       <section className="bg-white py-20">
         <Container size="content">
           <div className="max-w-[760px]">
-            <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{hero.eyebrow}</p>
-            <h1 className="mt-3 text-5xl font-semibold leading-tight tracking-[-0.03em] text-msp-ink">{hero.title}</h1>
-            <p className="mt-5 text-[15px] leading-relaxed text-msp-ink">{hero.subtitle}</p>
-            <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+            <p className="msp-eyebrow">{hero.eyebrow}</p>
+            <h1 className="msp-hero-title mt-3">{hero.title}</h1>
+            <p className="msp-lead mt-5">{hero.subtitle}</p>
+            <ul className="msp-list mt-4 grid gap-2">
               {hero.bullets.map((bullet) => (
                 <li key={bullet} className="relative pl-4">
                   <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
@@ -38,14 +37,14 @@ export default function ContactPage() {
 
       <section className="bg-[#f5f5f6] py-20">
         <Container size="content">
-          <h2 className="text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{process.title}</h2>
-          <p className="mt-2 text-[14px] leading-relaxed text-msp-muted">{process.subtitle}</p>
+          <h2 className="msp-section-title">{process.title}</h2>
+          <p className="msp-body mt-2">{process.subtitle}</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {process.steps.map((step) => (
-              <article key={step.label} className="rounded-[12px] border border-gray-100 bg-white p-5 shadow-msp-card">
+              <article key={step.label} className="rounded-[12px] border border-gray-100 bg-white px-5 py-6 shadow-msp-card md:px-6 md:py-7">
                 <p className="text-[36px] font-bold tracking-[-0.02em] text-[#c2d4f6]">{step.label}</p>
-                <h3 className="mt-2 text-[24px] font-bold tracking-[-0.02em] text-msp-ink">{step.title}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-msp-muted">{step.body}</p>
+                <h3 className="mt-3 text-[24px] font-bold tracking-[-0.02em] text-msp-ink">{step.title}</h3>
+                <p className="msp-body mt-3">{step.body}</p>
               </article>
             ))}
           </div>
@@ -56,6 +55,11 @@ export default function ContactPage() {
         <Container size="content">
           <div className="grid gap-6 md:grid-cols-[1fr_360px]">
             <Card className="p-6">
+              <div className="mb-6 max-w-[760px]">
+                <p className="msp-eyebrow">{form.eyebrow}</p>
+                <h2 className="msp-subsection-title mt-2">{form.title}</h2>
+                <p className="msp-body mt-3">{form.subtitle}</p>
+              </div>
               <form className="grid gap-4" aria-label={form.title}>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
@@ -111,7 +115,7 @@ export default function ContactPage() {
                   <Input id="contact-goal" name="goal" className="mt-2 h-[40px]" />
                 </div>
 
-                <label className="inline-flex items-center gap-2 text-[12px] text-msp-muted">
+                <label className="inline-flex items-center gap-2 text-[14px] leading-relaxed text-msp-muted">
                   <Checkbox name="consent" />
                   {form.consentLabel}
                 </label>
@@ -121,21 +125,15 @@ export default function ContactPage() {
                     {form.submitLabel}
                   </Button>
                 </div>
-                <p className="text-[12px] text-msp-muted">{form.privacyNote}</p>
+                <p className="text-[14px] leading-relaxed text-msp-muted">{form.privacyNote}</p>
               </form>
             </Card>
 
-            <Card className="p-5">
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">WHY TRIAD IT</p>
-              <h3 className="mt-2 text-[36px] font-bold tracking-[-0.02em] text-msp-ink">{trustPanel.title}</h3>
-              <VisualPlaceholder
-                tone="blue"
-                variant="form"
-                imageSrc="/images/illustrations/diagram-compliance-framework.webp"
-                imageAlt="Compliance and governance framework"
-                className="mt-4 h-[170px] rounded-[8px] border-gray-100"
-              />
-              <ul className="mt-4 grid gap-2 text-[13px] leading-relaxed text-msp-muted">
+            <Card className="p-6">
+              <p className="msp-eyebrow">{trustPanel.eyebrow}</p>
+              <h3 className="msp-subsection-title mt-2">{trustPanel.title}</h3>
+              <p className="msp-body mt-4">{trustPanel.intro}</p>
+              <ul className="msp-list mt-5 grid gap-2.5">
                 {trustPanel.bullets.map((item) => (
                   <li key={item} className="relative pl-4">
                     <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-msp-blue" />
@@ -143,7 +141,11 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-[13px] font-semibold text-msp-ink">{trustPanel.closing}</p>
+              <div className="mt-6 rounded-[10px] border border-gray-100 bg-[#f8f9fb] p-4">
+                <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">{trustPanel.reassuranceTitle}</p>
+                <p className="msp-list mt-3">{trustPanel.reassuranceBody}</p>
+              </div>
+              <p className="mt-5 text-[13px] font-semibold text-msp-ink">{trustPanel.closing}</p>
             </Card>
           </div>
         </Container>
@@ -153,16 +155,16 @@ export default function ContactPage() {
         <Container size="content">
           <div className="grid gap-5 rounded-[12px] border border-gray-100 bg-white p-6 shadow-msp-card md:grid-cols-[1fr_360px]">
             <div>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-msp-blue">DIRECT CONTACT</p>
-              <h2 className="mt-2 text-[40px] font-bold tracking-[-0.02em] text-msp-ink">{direct.title}</h2>
-              <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{direct.subtitle}</p>
+              <p className="msp-eyebrow">DIRECT CONTACT</p>
+              <h2 className="msp-section-title mt-2">{direct.title}</h2>
+              <p className="msp-body mt-3 max-w-[520px]">{direct.subtitle}</p>
             </div>
             <div className="rounded-[10px] border border-gray-100 bg-[#f8f9fb] p-4 text-[14px] text-msp-ink">
               <p className="font-semibold">{direct.name}</p>
               <p className="mt-2 text-msp-blue">{direct.email}</p>
               <p className="mt-1 text-msp-blue">{direct.phone}</p>
-              <p className="mt-2 text-[13px] text-msp-muted">{direct.region}</p>
-              <p className="mt-3 text-[12px] leading-relaxed text-msp-muted">{direct.reassurance}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-msp-muted">{direct.region}</p>
+              <p className="mt-3 text-[14px] leading-relaxed text-msp-muted">{direct.reassurance}</p>
             </div>
           </div>
         </Container>
@@ -170,9 +172,10 @@ export default function ContactPage() {
 
       <section className="bg-white py-20">
         <Container size="content">
-          <div className="rounded-[12px] border border-gray-100 bg-white p-6 shadow-msp-card">
-            <h2 className="text-[38px] font-bold tracking-[-0.02em] text-msp-ink">{closingCta.title}</h2>
-            <p className="mt-2 text-[14px] leading-relaxed text-msp-muted">{closingCta.subtitle}</p>
+          <div className="rounded-[12px] border border-[#e6edf3] bg-[#fbfcfd] p-6 shadow-[0_10px_30px_rgba(15,23,42,0.03)]">
+            <p className="msp-eyebrow">EXPLORE FIRST</p>
+            <h2 className="msp-subsection-title mt-2">{closingCta.title}</h2>
+            <p className="msp-body mt-2 max-w-[560px]">{closingCta.subtitle}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button href={closingCta.primaryHref} size="sm" variant="secondary">
                 {closingCta.primaryLabel}

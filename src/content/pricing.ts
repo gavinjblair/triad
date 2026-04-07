@@ -71,7 +71,7 @@ export const pricingContent = {
     ],
   },
   scopeModel: {
-    title: "Service level defines depth / Environment defines scope",
+    title: "Service level defines depth. Environment defines scope.",
     body:
       "Scope is built around your actual environment and operating requirements. Service level reflects depth of control and accountability.",
     bullets: [
@@ -117,7 +117,7 @@ export const pricingContent = {
   faqTitle: "Frequently asked questions",
   tierButtonLabel: "Book a Structured IT Review",
   closingCta: {
-    title: "Ready to bring structure to your IT environment?",
+    title: "Ready to define the right service level for your IT environment?",
     buttonLabel: "Book a Structured IT Review",
     buttonHref: "/contact",
   },

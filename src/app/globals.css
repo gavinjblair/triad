@@ -2,8 +2,8 @@
 
 :root {
   --msp-ink: #101826;
-  --msp-muted: #596375;
-  --msp-subtle: #7b8699;
+  --msp-muted: #4f5b6c;
+  --msp-subtle: #6f7b8f;
 
   --msp-surface: #ffffff;
   --msp-surface-page: #f4f5f7;
@@ -58,7 +58,7 @@
   --shadow-msp-card: var(--msp-shadow-card);
   --shadow-msp-soft: var(--msp-shadow-soft);
 
-  --font-sans: var(--font-lato);
+  --font-sans: var(--font-source-sans-3);
 }
 
 @layer base {
@@ -69,7 +69,7 @@
   body {
     background: var(--msp-surface-page);
     color: var(--msp-ink);
-    font-family: var(--font-lato), ui-sans-serif, system-ui, -apple-system,
+    font-family: var(--font-source-sans-3), ui-sans-serif, system-ui, -apple-system,
       Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   }
 
@@ -104,6 +104,42 @@
 
   .msp-card-tight {
     @apply rounded-md border border-gray-100 bg-white p-6 shadow-msp-card;
+  }
+
+  .msp-eyebrow {
+    @apply text-[11px] font-bold tracking-[0.2em] text-msp-blue;
+  }
+
+  .msp-hero-title {
+    @apply text-[clamp(2.5rem,4.7vw,3.45rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-msp-ink;
+  }
+
+  .msp-section-title {
+    @apply text-[clamp(2rem,3vw,2.55rem)] font-bold leading-[1.08] tracking-[-0.028em] text-msp-ink;
+  }
+
+  .msp-subsection-title {
+    @apply text-[clamp(1.85rem,2.4vw,2.2rem)] font-bold leading-[1.12] tracking-[-0.024em] text-msp-ink;
+  }
+
+  .msp-card-title {
+    @apply text-[clamp(1.18rem,1.65vw,1.45rem)] font-bold leading-[1.18] tracking-[-0.02em] text-msp-ink;
+  }
+
+  .msp-lead {
+    @apply text-[17px] leading-[1.72] text-msp-ink;
+  }
+
+  .msp-body {
+    @apply text-[16px] leading-[1.72] text-msp-muted;
+  }
+
+  .msp-list {
+    @apply text-[16px] leading-[1.68] text-msp-muted;
+  }
+
+  .msp-cta-title {
+    @apply text-[clamp(2.2rem,4vw,3.15rem)] font-bold leading-[1.08] tracking-[-0.028em] text-msp-ink;
   }
 
   .msp-btn {
@@ -190,7 +226,7 @@
   }
 
   .msp-input {
-    @apply h-[54px] rounded-md border border-msp-border bg-white px-4 text-[13px] font-normal text-msp-ink outline-none transition-colors placeholder:text-msp-subtle focus:border-msp-blue;
+    @apply h-[54px] rounded-md border border-msp-border bg-white px-4 text-[15px] font-normal text-msp-ink outline-none transition-colors placeholder:text-msp-subtle focus:border-msp-blue;
   }
 
   .msp-checkbox,
