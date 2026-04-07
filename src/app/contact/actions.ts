@@ -23,6 +23,9 @@ export type ContactFormState = {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const supportEmail = "info@triad-it.co.uk";
+const supportPhone = "0131 358 0579";
+const supportWebsite = "https://triad-it.co.uk";
+const emailLogoUrl = `${supportWebsite}/images/icons/logo-icon-email.png`;
 
 const getValue = (formData: FormData, key: string) => {
   const value = formData.get(key);
@@ -188,18 +191,53 @@ export async function submitContactAssessment(
     "",
     "TRIAD IT",
     supportEmail,
+    supportPhone,
+    supportWebsite,
   ].join("\n");
 
   const confirmationHtml = `
-    <div style="font-family: Arial, sans-serif; color: #101826; line-height: 1.6;">
-      <p>Hi ${values.name},</p>
-      <p>Thanks for contacting TRIAD IT.</p>
-      <p>We have received your request and will review it shortly.</p>
-      <p>We will respond within one business day.</p>
-      <p style="margin-top: 24px;">
-        <strong>TRIAD IT</strong><br />
-        ${supportEmail}
-      </p>
+    <div style="margin: 0; padding: 0; background: #f6f8fc;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse; background: #f6f8fc;">
+        <tr>
+          <td style="padding: 32px 16px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 640px; margin: 0 auto; border-collapse: collapse; background: #ffffff; border: 1px solid #dbe3f0; border-radius: 12px;">
+              <tr>
+                <td style="padding: 32px 32px 24px; font-family: Arial, sans-serif; color: #101826; line-height: 1.6;">
+                  <p style="margin: 0 0 16px; font-size: 16px;">Hi ${values.name},</p>
+                  <p style="margin: 0 0 16px; font-size: 16px;">Thanks for contacting TRIAD IT.</p>
+                  <p style="margin: 0 0 16px; font-size: 16px;">We have received your request and will review it shortly.</p>
+                  <p style="margin: 0; font-size: 16px;">We will respond within one business day.</p>
+
+                  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 28px; border-collapse: collapse; border-top: 1px solid #dbe3f0;">
+                    <tr>
+                      <td style="padding-top: 20px; width: 72px; vertical-align: top;">
+                        <img
+                          src="${emailLogoUrl}"
+                          alt="TRIAD IT"
+                          width="44"
+                          height="44"
+                          style="display: block; width: 44px; height: 44px; border: 0;"
+                        />
+                      </td>
+                      <td style="padding-top: 16px; font-family: Arial, sans-serif; color: #101826; vertical-align: top;">
+                        <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">TRIAD IT</div>
+                        <div style="font-size: 14px; line-height: 1.7;">
+                          <a href="tel:${supportPhone.replace(/\s+/g, "")}" style="color: #101826; text-decoration: none;">${supportPhone}</a><br />
+                          <a href="mailto:${supportEmail}" style="color: #0b5ed7; text-decoration: none;">${supportEmail}</a><br />
+                          <a href="${supportWebsite}" style="color: #0b5ed7; text-decoration: none;">${supportWebsite}</a>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 13px; color: #5f6f85;">
+                          Managed IT Services | Cybersecurity | Microsoft 365
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
     </div>
   `;
 
