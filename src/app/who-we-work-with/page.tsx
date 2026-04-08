@@ -75,8 +75,8 @@ export default function WhoWeWorkWithPage() {
               tone="blue"
               variant="list"
               framed={false}
-              imageSrc="/images/illustrations/hero-managed-infrastructure.webp"
-              imageAlt="Industries supported by structured IT operations"
+              imageSrc="/images/illustrations/who-we-work-with-industries.webp"
+              imageAlt="Business sectors supported by structured IT services"
               className="h-[220px]"
             />
           </div>

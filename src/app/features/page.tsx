@@ -8,7 +8,7 @@ const featureIllustrations: Record<string, string> = {
   "Automated patch management": "/images/illustrations/managed-it-automation.webp",
   "Native remote troubleshooting kit": "/images/illustrations/endpoint-security-management.webp",
   "Network monitoring": "/images/illustrations/core-network-architecture.webp",
-  "Endpoint automation": "/images/illustrations/managed-it-automation.webp",
+  "Endpoint automation": "/images/illustrations/features-automation-support-diagram.webp",
   "Broad OS Offering": "/images/illustrations/hero-hybrid-infrastructure.webp",
 };
 

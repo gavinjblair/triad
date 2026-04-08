@@ -145,7 +145,7 @@ export default function Microsoft365ManagementEdinburghPage() {
             </div>
             <VisualPlaceholder
               tone="blue"
-              imageSrc="/images/illustrations/m365-governance-framework.webp"
+              imageSrc="/images/illustrations/m365-service-inclusions-visual.webp"
               imageAlt="Microsoft 365 service inclusions"
               className="h-[210px] rounded-[10px] border-gray-100"
             />

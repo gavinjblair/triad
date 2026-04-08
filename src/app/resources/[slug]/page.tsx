@@ -35,15 +35,15 @@ const RELATED_GUIDE_SLUGS = {
 const RELATED_GUIDE_VISUALS = {
   Strategic: {
     tone: "blue",
-    imageSrc: "/images/illustrations/hero-it-strategy-review.webp",
+    imageSrc: "/images/illustrations/resource-strategic-guides-visual.webp",
   },
   Operational: {
     tone: "green",
-    imageSrc: "/images/illustrations/hero-operational-dashboard.webp",
+    imageSrc: "/images/illustrations/resource-operational-guides-visual.webp",
   },
   Security: {
     tone: "amber",
-    imageSrc: "/images/illustrations/endpoint-security-management.webp",
+    imageSrc: "/images/illustrations/resource-security-guides-visual.webp",
   },
 } as const;
 
